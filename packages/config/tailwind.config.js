@@ -25,8 +25,27 @@ export default {
         '18': '4.5rem',
         '88': '22rem',
         'page': '12rem',
-      }
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#374151',
+            a: {
+              color: '#312783',
+              '&:hover': {
+                color: '#009E85',
+              },
+            },
+            'h1, h2, h3, h4': {
+              color: '#111827',
+              fontWeight: '600',
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }

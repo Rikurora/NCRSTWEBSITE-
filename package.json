@@ -6,8 +6,12 @@
   "scripts": {
     "dev:cms": "pnpm --filter cms dev",
     "dev:website": "pnpm --filter website dev",
+    "dev:backend": "pnpm --filter backend dev",
     "build:cms": "pnpm --filter cms build",
     "build:website": "pnpm --filter website build",
+    "build:backend": "pnpm --filter backend build",
+    "dev": "pnpm --parallel dev:*",
+    "build": "pnpm build:backend && pnpm build:cms && pnpm build:website",
     "lint": "pnpm -r lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },

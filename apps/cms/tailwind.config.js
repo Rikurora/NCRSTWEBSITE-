@@ -1,17 +1,51 @@
-import baseConfig from 'config/tailwind.config.js';
-
 /** @type {import('tailwindcss').Config} */
 export default {
-  ...baseConfig,
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    "../../packages/shared/src/**/*.{js,jsx,ts,tsx}"
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      ...baseConfig.theme?.extend,
-      // Add any CMS-specific theme extensions here
-    }
+      colors: {
+        ncrst: {
+          grey: '#777675',
+          gold: '#FFD332',
+          green: '#009E85',
+          blue: '#312783',
+          yellow: "#F59E0B",
+          'grey-light': '#f8f8f8',
+          'grey-dark': '#5a5958',
+        }
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      lineHeight: {
+        'body': '1.5',
+        'heading': '1.2',
+      },
+      spacing: {
+        '18': '4.5rem',
+        '88': '22rem',
+        'page': '12rem',
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#374151',
+            a: {
+              color: '#312783',
+              '&:hover': {
+                color: '#009E85',
+              },
+            },
+            'h1, h2, h3, h4': {
+              color: '#111827',
+              fontWeight: '600',
+            },
+          },
+        },
+      },
+    },
   },
-  plugins: [],
-};
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
+}

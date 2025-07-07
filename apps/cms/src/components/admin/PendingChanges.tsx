@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { CheckCircle, XCircle, Clock, Search, Filter } from 'lucide-react';
+import { useState } from 'react';
+import { CheckCircle, XCircle, Clock, FileCheck, Eye, X } from 'lucide-react';
+import { Card } from '../common/Card';
+import PreviewModal from '../common/PreviewModal';
 import { Modal } from '../common/Modal';
 import { useContent } from '../../context/ContentContext';
 import { useAuth } from '../../context/AuthContext';
@@ -128,175 +130,128 @@ function ApprovalModal({ change, isOpen, onClose, onApprove }: ApprovalModalProp
   );
 }
 
-export function PendingChanges() {
+export default function PendingChanges() {
   const { changes, approveChange } = useContent();
-  const [searchTerm, setSearchTerm] = useState('');
   const [selectedChange, setSelectedChange] = useState<Change | null>(null);
+  const [isActionModalOpen, setIsActionModalOpen] = useState(false);
   const [isApprovalModalOpen, setIsApprovalModalOpen] = useState(false);
-  const [statusFilter, setStatusFilter] = useState('pending_approval');
+  const [statusFilter, setStatusFilter] = useState('all');
 
-  const filteredChanges = changes.filter(change => {
-    const matchesSearch = change.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         change.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         change.department.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesStatus = statusFilter === 'all' || change.status === statusFilter;
-    
-    return matchesSearch && matchesStatus;
-  });
+  const filteredChanges = changes.filter(change => 
+    statusFilter === 'all' || change.status === statusFilter
+  );
 
-  const handleReviewChange = (change: Change) => {
-    setSelectedChange(change);
-    setIsApprovalModalOpen(true);
-  };
-
-  const statusCounts = {
+  const stats = {
+    pending_review: changes.filter(c => c.status === 'pending_review').length,
     pending_approval: changes.filter(c => c.status === 'pending_approval').length,
     approved: changes.filter(c => c.status === 'approved').length,
-    sent_back: changes.filter(c => c.status === 'sent_back').length,
-    total: changes.length
+    sent_back: changes.filter(c => c.status === 'sent_back').length
   };
 
   return (
     <div className="p-6">
       <div className="mb-8">
         <h2 className="text-3xl font-bold text-[#777675] mb-2">Pending Changes</h2>
-        <p className="text-gray-600">Review and approve content changes from departments</p>
-        <div className="text-sm text-gray-500 mt-2">
-          {statusCounts.pending_approval} changes awaiting approval
-        </div>
+        <p className="text-gray-600">Review and approve content changes</p>
       </div>
 
-      {/* Status Overview */}
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-lg border-2 border-[#ffd332] p-4">
-          <div className="text-2xl font-bold text-[#ffd332]">{statusCounts.pending_approval}</div>
-          <div className="text-sm text-gray-600">Pending Approval</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-2xl font-bold text-green-600">{statusCounts.approved}</div>
-          <div className="text-sm text-gray-600">Approved</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-2xl font-bold text-red-600">{statusCounts.sent_back}</div>
-          <div className="text-sm text-gray-600">Sent Back</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-2xl font-bold text-gray-600">{statusCounts.total}</div>
-          <div className="text-sm text-gray-600">Total</div>
-        </div>
+      <div className="grid grid-cols-4 gap-4 mb-6">
+        {Object.entries(stats).map(([status, count]) => (
+          <Card
+            key={status}
+            title={status.replace('_', ' ').toUpperCase()}
+            description={count.toString()}
+            icon={
+              status === 'pending_review' ? FileCheck :
+              status === 'pending_approval' ? Clock :
+              status === 'approved' ? CheckCircle :
+              X
+            }
+            variant={
+              status === 'pending_review' ? 'default' :
+              status === 'pending_approval' ? 'gold' :
+              status === 'approved' ? 'default' :
+              'grey'
+            }
+            onClick={() => setStatusFilter(status === statusFilter ? 'all' : status)}
+          />
+        ))}
       </div>
 
-      <div className="bg-white rounded-lg shadow-lg border-2 border-gray-200">
-        <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-[#ffd332]/10">
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg font-bold text-gray-900">Changes ({filteredChanges.length})</h3>
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search changes..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ffd332]"
-                />
-              </div>
-              <select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ffd332]"
-              >
-                <option value="pending_approval">Pending Approval</option>
-                <option value="approved">Approved</option>
-                <option value="sent_back">Sent Back</option>
-                <option value="all">All Status</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div className="divide-y divide-gray-200">
+      <div className="bg-white shadow overflow-hidden sm:rounded-md">
+        <ul className="divide-y divide-gray-200">
           {filteredChanges.map((change) => (
-            <div key={change.id} className="p-6 hover:bg-gray-50 transition-colors">
+            <li key={change.id} className="px-6 py-4">
               <div className="flex items-center justify-between">
-                <div className="flex-1">
-                  <div className="flex items-center space-x-3 mb-2">
-                    <h4 className="text-lg font-bold text-gray-900">{change.title}</h4>
-                    <span className={`px-3 py-1 text-xs font-bold rounded-full uppercase tracking-wide ${
-                      change.type === 'update' ? 'bg-blue-100 text-blue-800' :
-                      change.type === 'create' ? 'bg-green-100 text-green-800' :
-                      'bg-red-100 text-red-800'
-                    }`}>
-                      {change.type}
-                    </span>
-                    <span className={`px-3 py-1 text-xs font-bold rounded-full ${
-                      change.status === 'pending_approval' ? 'bg-[#ffd332]/20 text-[#777675]' :
-                      change.status === 'approved' ? 'bg-green-100 text-green-800' :
-                      'bg-red-100 text-red-800'
-                    }`}>
-                      {change.status === 'pending_approval' ? 'Pending Approval' :
-                       change.status === 'sent_back' ? 'Sent Back' : 'Approved'}
-                    </span>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900">{change.title}</h3>
+                  <div className="mt-1 text-sm text-gray-500">
+                    <span>Type: {change.type}</span>
+                    <span className="mx-2">•</span>
+                    <span>Department: {change.department}</span>
+                    <span className="mx-2">•</span>
+                    <span>Author: {change.author}</span>
+                    <span className="mx-2">•</span>
+                    <span>Created: {new Date(change.createdAt).toLocaleDateString()}</span>
                   </div>
-                  
-                  <p className="text-gray-600 mb-3">{change.description}</p>
-                  
-                  <div className="flex items-center space-x-6 text-sm text-gray-500">
-                    <span><strong>Editor:</strong> {change.author}</span>
-                    <span><strong>Department:</strong> {change.department}</span>
-                    <span><strong>Created:</strong> {new Date(change.createdAt).toLocaleDateString()}</span>
-                    {change.reviewedBy && (
-                      <span><strong>Reviewed by:</strong> {change.reviewedBy}</span>
-                    )}
-                  </div>
-
                   {change.checkerNotes && (
-                    <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-md">
-                      <div className="font-medium text-blue-900 text-sm">Checker Notes:</div>
+                    <div className="mt-2">
+                      <span className="text-sm font-medium text-blue-800">Checker Notes:</span>
                       <div className="text-blue-800 text-sm mt-1">{change.checkerNotes}</div>
                     </div>
                   )}
                 </div>
-                
                 <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => {
+                      setSelectedChange(change);
+                      setIsActionModalOpen(true);
+                    }}
+                    className="p-2 text-gray-400 hover:text-gray-500"
+                    title="Preview"
+                  >
+                    <Eye className="h-5 w-5" />
+                  </button>
                   {change.status === 'pending_approval' && (
                     <button
-                      onClick={() => handleReviewChange(change)}
-                      className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-[#777675] bg-gradient-to-r from-[#ffd332] to-[#e6be2d] rounded-md hover:from-[#e6be2d] hover:to-[#d4a829]"
+                      onClick={() => {
+                        setSelectedChange(change);
+                        setIsApprovalModalOpen(true);
+                      }}
+                      className="p-2 text-green-600 hover:text-green-700"
+                      title="Approve/Reject"
                     >
-                      <Clock className="h-4 w-4" />
-                      <span>Review</span>
+                      <CheckCircle className="h-5 w-5" />
                     </button>
                   )}
                 </div>
               </div>
-            </div>
+            </li>
           ))}
-          
-          {filteredChanges.length === 0 && (
-            <div className="p-12 text-center">
-              <CheckCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No changes found</h3>
-              <p className="text-gray-600">
-                {statusFilter === 'pending_approval' 
-                  ? 'All changes have been reviewed.' 
-                  : 'Try adjusting your search or filter criteria.'}
-              </p>
-            </div>
-          )}
-        </div>
+        </ul>
       </div>
 
-      <ApprovalModal
-        change={selectedChange}
-        isOpen={isApprovalModalOpen}
-        onClose={() => {
-          setIsApprovalModalOpen(false);
-          setSelectedChange(null);
-        }}
-        onApprove={approveChange}
-      />
+      {selectedChange && (
+        <>
+          <PreviewModal
+            content={selectedChange}
+            isOpen={isActionModalOpen}
+            onClose={() => {
+              setIsActionModalOpen(false);
+              setSelectedChange(null);
+            }}
+          />
+          <ApprovalModal
+            change={selectedChange}
+            isOpen={isApprovalModalOpen}
+            onClose={() => {
+              setIsApprovalModalOpen(false);
+              setSelectedChange(null);
+            }}
+            onApprove={approveChange}
+          />
+        </>
+      )}
     </div>
   );
 }

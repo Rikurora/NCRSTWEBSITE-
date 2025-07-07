@@ -1,0 +1,1 @@
+export type WorkflowStatus = 'draft' | 'pending_review' | 'changes_requested' | 'approved' | 'published'; 

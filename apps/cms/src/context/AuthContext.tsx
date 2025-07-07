@@ -1,96 +1,94 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { User } from '../types';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: 'ccm_admin' | 'editor' | 'checker';
+  department?: string;
+  canChangePassword?: boolean;
+}
 
 interface AuthContextType {
   user: User | null;
-  login: (email: string, password: string) => Promise<boolean>;
+  login: (email: string, password: string) => Promise<void>;
   logout: () => void;
-  switchRole: (role: 'ccm_admin' | 'editor' | 'checker') => void;
-  changePassword: (currentPassword: string, newPassword: string) => Promise<boolean>;
+  isLoading: boolean;
+  switchRole?: () => void;
+  changePassword?: (oldPassword: string, newPassword: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Mock users for demonstration
-const mockUsers: Record<string, User> = {
-  'admin@ncrst.na': {
-    id: '1',
-    name: 'CCM Administrator',
-    email: 'admin@ncrst.na',
-    role: 'ccm_admin',
-    department: 'CCM',
-    status: 'active',
-    createdAt: '2024-01-01',
-    lastLogin: '2024-01-15',
-    canChangePassword: true
-  },
-  'oceo.editor1@ncrst.na': {
-    id: '2',
-    name: 'John Smith',
-    email: 'oceo.editor1@ncrst.na',
-    role: 'editor',
-    department: 'OCEO',
-    status: 'active',
-    createdAt: '2024-01-01',
-    lastLogin: '2024-01-14',
-    canChangePassword: true
-  },
-  'marketing.editor1@ncrst.na': {
-    id: '3',
-    name: 'Sarah Johnson',
-    email: 'marketing.editor1@ncrst.na',
-    role: 'editor',
-    department: 'Marketing',
-    status: 'active',
-    createdAt: '2024-01-01',
-    lastLogin: '2024-01-13',
-    canChangePassword: true
-  },
-  'checker@ncrst.na': {
-    id: '4',
-    name: 'Content Checker',
-    email: 'checker@ncrst.na',
-    role: 'checker',
-    department: 'Content Review',
-    status: 'active',
-    createdAt: '2024-01-01',
-    lastLogin: '2024-01-15',
-    canChangePassword: true
-  }
-};
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const login = async (email: string, password: string): Promise<boolean> => {
-    const foundUser = mockUsers[email];
-    if (foundUser && password === 'password') {
-      setUser(foundUser);
-      return true;
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      fetchUser(token);
+    } else {
+      setIsLoading(false);
     }
-    return false;
+  }, []);
+
+  const fetchUser = async (token: string) => {
+    try {
+      const response = await fetch(`${API_URL}/api/auth/me`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch user');
+      }
+
+      const { user: userData } = await response.json();
+      setUser(userData);
+    } catch (error) {
+      localStorage.removeItem('token');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const login = async (email: string, password: string) => {
+    const response = await fetch(`${API_URL}/api/auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Failed to login');
+    }
+
+    const { token, user: userData } = await response.json();
+    localStorage.setItem('token', token);
+    setUser(userData);
   };
 
   const logout = () => {
+    localStorage.removeItem('token');
     setUser(null);
   };
 
-  const switchRole = (role: 'ccm_admin' | 'editor' | 'checker') => {
-    if (user) {
-      setUser({ ...user, role });
-    }
-  };
-
-  const changePassword = async (currentPassword: string, newPassword: string): Promise<boolean> => {
-    // Mock password change - in real app, this would call backend
-    if (currentPassword === 'password' && newPassword.length >= 6) {
-      return true;
-    }
-    return false;
+  const value = {
+    user,
+    login,
+    logout,
+    isLoading
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, switchRole, changePassword }}>
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );

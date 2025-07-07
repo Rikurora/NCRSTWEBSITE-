@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 import { ContentItem, Change, Department, User, Notification } from '../types';
 
 interface ContentContextType {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { LogIn } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export function Login() {
   const [email, setEmail] = useState('');
@@ -8,19 +9,18 @@ export function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
     setError('');
+    setIsLoading(true);
 
     try {
-      const success = await login(email, password);
-      if (!success) {
-        setError('Invalid email or password');
-      }
+      await login(email, password);
+      navigate('/dashboard');
     } catch (err) {
-      setError('Login failed. Please try again.');
+      setError(err instanceof Error ? err.message : 'Failed to login');
     } finally {
       setIsLoading(false);
     }

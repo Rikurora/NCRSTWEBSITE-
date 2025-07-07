@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FileText, Edit, Plus, Clock, CheckCircle, User } from 'lucide-react';
+import { useState } from 'react';
+import { FileText, Edit, Plus, Clock, CheckCircle } from 'lucide-react';
 import { Card } from '../common/Card';
 import { Sidebar } from '../common/Sidebar';
 import { ContentManagement } from './ContentManagement';
@@ -12,9 +12,10 @@ export function EditorDashboard() {
   const { content, changes } = useContent();
   const { user } = useAuth();
 
-  // Filter content and changes for current user's department only
-  const myContent = content.filter(item => item.department === user?.department);
-  const myChanges = changes.filter(change => change.department === user?.department && change.author === user?.name);
+  // Filter content and changes for current user (fallback to user name if no department)
+  const userDepartment = user?.department || 'General';
+  const myContent = content.filter(item => item.author === user?.name);
+  const myChanges = changes.filter(change => change.author === user?.name);
   const pendingChanges = myChanges.filter(change => change.status === 'pending_review' || change.status === 'pending_approval').length;
   const approvedChanges = myChanges.filter(change => change.status === 'approved').length;
   const rejectedChanges = myChanges.filter(change => change.status === 'sent_back').length;
@@ -39,9 +40,9 @@ export function EditorDashboard() {
           <div className="p-6">
             <div className="mb-8">
               <h2 className="text-3xl font-bold text-[#777675] mb-2">Editor Dashboard</h2>
-              <p className="text-gray-600">Create and manage content for {user?.department} department</p>
+              <p className="text-gray-600">Create and manage your content</p>
               <div className="text-sm text-gray-500 mt-2">
-                Department: {user?.department} • {pendingChanges} changes pending
+                User: {user?.name} • {pendingChanges} changes pending
               </div>
             </div>
 
@@ -68,7 +69,7 @@ export function EditorDashboard() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
               <Card
                 title="Create Content"
-                description={`Add new content to your ${user?.department} department`}
+                description="Add new content to the website"
                 icon={Plus}
                 onClick={() => setCurrentView('content')}
                 variant="gold"

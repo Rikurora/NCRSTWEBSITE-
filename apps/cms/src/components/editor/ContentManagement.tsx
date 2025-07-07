@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Search, Filter, Edit, Trash2, Eye, Globe } from 'lucide-react';
+import { Plus, Search, Filter, Edit, Trash2, Globe } from 'lucide-react';
 import { Modal } from '../common/Modal';
 import { useContent } from '../../context/ContentContext';
 import { useAuth } from '../../context/AuthContext';
@@ -271,16 +271,16 @@ export function ContentManagement() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedContent, setSelectedContent] = useState<ContentItem | null>(null);
 
-  // Filter content for current user's department only
-  const myContent = content.filter(item => item.department === user?.department);
+  // Filter content for current user only
+  const myContent = content.filter(item => item.author === user?.name);
   const filteredContent = myContent.filter(item =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     item.section.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Get department sections
-  const userDepartment = departments.find(dept => dept.code === user?.department);
-  const departmentSections = userDepartment?.sections || [];
+  // Get default department sections
+  const userDepartment = departments.find(dept => dept.name === 'General') || departments[0];
+  const departmentSections = userDepartment?.sections || ['General', 'News', 'Updates'];
 
   const handleEditContent = (contentItem: ContentItem) => {
     setSelectedContent(contentItem);
@@ -295,9 +295,9 @@ export function ContentManagement() {
     <div className="p-6">
       <div className="mb-8">
         <h2 className="text-3xl font-bold text-[#777675] mb-2">Content Management</h2>
-        <p className="text-gray-600">Create and manage content for {user?.department} department</p>
+        <p className="text-gray-600">Create and manage your content</p>
         <div className="text-sm text-gray-500 mt-2">
-          You can only edit content for your department: {user?.department}
+          You can edit and manage your authored content
         </div>
       </div>
 
@@ -416,7 +416,7 @@ export function ContentManagement() {
             <Plus className="h-12 w-12 text-gray-400 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">No content found</h3>
             <p className="text-gray-600 mb-4">
-              {searchTerm ? 'Try adjusting your search criteria.' : `Start creating content for ${user?.department} department.`}
+              {searchTerm ? 'Try adjusting your search criteria.' : 'Start creating your first content.'}
             </p>
             <button
               onClick={() => setIsCreateModalOpen(true)}
@@ -432,7 +432,7 @@ export function ContentManagement() {
         isOpen={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
         onSave={createContent}
-        userDepartment={user?.department || ''}
+        userDepartment={user?.name || 'User'}
         departmentSections={departmentSections}
       />
 

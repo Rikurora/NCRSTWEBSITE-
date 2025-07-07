@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Users, FileCheck, Building2, BarChart3, Shield, Settings } from 'lucide-react';
+import { useState } from 'react';
+import { Users, FileCheck, Building2, BarChart3, Shield } from 'lucide-react';
 import { Card } from '../common/Card';
 import { Sidebar } from '../common/Sidebar';
 import { UserManagement } from './UserManagement';
 import { Departments } from './Departments';
-import { PendingChanges } from './PendingChanges';
+import PendingChanges from './PendingChanges';
 import { useContent } from '../../context/ContentContext';
 
 export function AdminDashboard() {
