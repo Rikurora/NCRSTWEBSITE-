@@ -67,8 +67,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the built website from docs folder
-          path: './docs'
+          # Upload the built website from root folder
+          path: '.'
       
       - name: Deploy to GitHub Pages
         id: deployment
