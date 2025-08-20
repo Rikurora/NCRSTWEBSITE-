@@ -6,7 +6,7 @@ import logo from "../assets/logo.jpeg";
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -55,9 +55,10 @@ const Header: React.FC = () => {
       name: "Technology",
       href: "/technology",
       dropdown: [
-        { name: "Biotechnology Labs", href: "/technology#biotech" },
-        { name: "National AI Working Group", href: "/technology#ai" },
         { name: "Biosafety", href: "/technology#biosafety" },
+        { name: "National AI Working Group", href: "/technology#ai" },
+        { name: "AI Research Projects & Funding", href: "/technology#ai" },
+        { name: "Biotechnology Labs", href: "/technology#biotech" },
         { name: "Space Science and Technology (SST)", href: "/technology#sst" },
         { name: "Tech Resources", href: "/technology#resources" },
       ],
@@ -121,23 +122,29 @@ const Header: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
+      // Hide dropdown when scrolling
+      setHoveredDropdown(null);
     };
     window.addEventListener("scroll", handleScroll);
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleDropdownToggle = (navName: string) => {
-    setActiveDropdown(activeDropdown === navName ? null : navName);
+  const handleDropdownHover = (navName: string) => {
+    setHoveredDropdown(navName);
+  };
+
+  const handleDropdownLeave = () => {
+    setHoveredDropdown(null);
   };
 
   const handleMainNavClick = () => {
-    setActiveDropdown(null);
+    setHoveredDropdown(null);
     setIsMenuOpen(false);
   };
 
   const handleDropdownItemClick = () => {
-    setActiveDropdown(null);
+    setHoveredDropdown(null);
     setIsMenuOpen(false);
   };
 
@@ -334,58 +341,54 @@ const Header: React.FC = () => {
           <div className="flex justify-center space-x-8 py-4">
             {navigation.map((item) => (
               <div key={item.name} className="relative">
-                {item.dropdown ? (
-                  <div>
-                    <div className="flex items-center">
-                      <Link
-                        to={item.href}
-                        onClick={handleMainNavClick}
-                        className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                          !isScrolled
-                            ? "text-white border-white"
-                            : location.pathname === item.href ||
-                              location.pathname.startsWith(item.href + "/")
-                            ? "text-ncrst-blue bg-ncrst-gold/10"
-                            : "text-ncrst-grey hover:text-ncrst-blue hover:bg-gray-50"
-                        }`}
-                      >
-                        {item.name}
-                      </Link>
-                      <button
-                        onClick={() => handleDropdownToggle(item.name)}
-                        className={`ml-1 p-1 rounded-md ${
-                          !isScrolled
-                            ? "hover:bg-white/10 text-white"
-                            : "hover:bg-gray-50"
-                        }`}
-                        aria-label={`Toggle ${item.name} dropdown`}
-                      >
-                        <ChevronDown
-                          size={16}
-                          className={`transition-transform ${
-                            activeDropdown === item.name ? "rotate-180" : ""
-                          } ${!isScrolled ? "text-white" : ""}`}
-                        />
-                      </button>
-                    </div>
-                    {activeDropdown === item.name && (
-                      <div className="absolute top-full left-0 mt-1 w-80 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50">
-                        {item.dropdown.map((subItem) => (
-                          <a
-                            key={subItem.name}
-                            href={subItem.href}
-                            className="block px-4 py-2 text-sm text-ncrst-grey hover:bg-gray-50 hover:text-ncrst-blue"
-                            onClick={(e) =>
-                              handleAnchorNavigation(subItem.href, e)
-                            }
-                          >
-                            {subItem.name}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ) : (
+                                 {item.dropdown ? (
+                   <div
+                     className="relative"
+                     onMouseEnter={() => handleDropdownHover(item.name)}
+                     onMouseLeave={handleDropdownLeave}
+                   >
+                     <div className="flex items-center">
+                       <Link
+                         to={item.href}
+                         onClick={handleMainNavClick}
+                         className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                           !isScrolled
+                             ? "text-white border-white"
+                             : location.pathname === item.href ||
+                               location.pathname.startsWith(item.href + "/")
+                             ? "text-ncrst-blue bg-ncrst-gold/10"
+                             : "text-ncrst-grey hover:text-ncrst-blue hover:bg-gray-50"
+                         }`}
+                       >
+                         {item.name}
+                       </Link>
+                       <div className="ml-1 p-1">
+                         <ChevronDown
+                           size={16}
+                           className={`transition-transform ${
+                             hoveredDropdown === item.name ? "rotate-180" : ""
+                           } ${!isScrolled ? "text-white" : ""}`}
+                         />
+                       </div>
+                     </div>
+                     {hoveredDropdown === item.name && (
+                       <div className="absolute top-full left-0 mt-1 w-80 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50">
+                         {item.dropdown.map((subItem) => (
+                           <a
+                             key={subItem.name}
+                             href={subItem.href}
+                             className="block px-4 py-2 text-sm text-ncrst-grey hover:bg-gray-50 hover:text-ncrst-blue"
+                             onClick={(e) =>
+                               handleAnchorNavigation(subItem.href, e)
+                             }
+                           >
+                             {subItem.name}
+                           </a>
+                         ))}
+                       </div>
+                     )}
+                   </div>
+                 ) : (
                   <Link
                     to={item.href}
                     onClick={handleMainNavClick}

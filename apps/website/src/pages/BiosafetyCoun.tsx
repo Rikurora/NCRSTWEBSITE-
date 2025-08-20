@@ -18,7 +18,7 @@ const BiosafetyCouncil: React.FC = () => {
     },
     {
       name: "Ms Priska Naimhwaka",
-      role: "Member",
+      role: "Vice-Chairperson",
     },
     {
       name: "Ms Victoria Weyulu",
@@ -201,23 +201,21 @@ const BiosafetyCouncil: React.FC = () => {
               Biosafety Council
             </h1>
             <p className="text-xl max-w-3xl mx-auto leading-body opacity-90">
-              Ensuring the safe development, handling, and use of genetically
-              modified organisms to protect human health and the environment.
+              A statutory body established by an Act of Parliament to regulate activities involving GMOs, serving as the national regulatory authority on biosafety matters.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Regulatory Framework Overview */}
+      {/* Council Overview */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-ncrst-grey mb-4 leading-heading">
-              Regulatory Framework
+              About the Biosafety Council
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-              Comprehensive biosafety regulation based on international best
-              practices and scientific risk assessment.
+              The Biosafety Council is established under the Biosafety Act, 2006 (Act No. 7 of 2006), to serve as the national regulatory body for genetically modified organisms (GMOs) in Namibia.
             </p>
           </div>
 
@@ -226,25 +224,23 @@ const BiosafetyCouncil: React.FC = () => {
               <div className="flex items-center space-x-3 mb-6">
                 <Shield className="text-ncrst-green" size={32} />
                 <h3 className="text-2xl font-bold text-ncrst-grey leading-heading">
-                  Biosafety Act (2006)
+                  Core Purpose
                 </h3>
               </div>
               <div className="space-y-4">
                 <p className="text-ncrst-grey-dark leading-body">
-                  The Biosafety Act provides the legal framework for regulating
-                  genetically modified organisms in Namibia, ensuring safety
-                  while promoting beneficial biotechnology applications.
+                  Regulate and oversee activities involving genetically modified organisms and GMO products in Namibia in order to protect human, animal, and environmental health while supporting responsible scientific advancement and compliance with national and international biosafety standards.
                 </p>
                 <div>
                   <h4 className="font-semibold text-ncrst-grey mb-2">
-                    Key Provisions
+                    Key Functions
                   </h4>
                   <ul className="space-y-1 text-sm text-ncrst-grey-dark">
-                    <li>• Mandatory permits for GMO activities</li>
-                    <li>• Risk assessment requirements</li>
-                    <li>• Public participation mechanisms</li>
-                    <li>• Monitoring and enforcement powers</li>
-                    <li>• Liability and compensation provisions</li>
+                    <li>• Review and evaluate permit applications</li>
+                    <li>• Provide scientific and technical advice</li>
+                    <li>• Assess environmental and health risks</li>
+                    <li>• Recommend approval conditions</li>
+                    <li>• Monitor compliance and enforcement</li>
                   </ul>
                 </div>
               </div>
@@ -252,7 +248,7 @@ const BiosafetyCouncil: React.FC = () => {
 
             <div className="bg-ncrst-grey text-white rounded-xl p-8">
               <h3 className="text-2xl font-bold mb-6 leading-heading">
-                Regulatory Principles
+                Regulatory Authority
               </h3>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
@@ -261,10 +257,10 @@ const BiosafetyCouncil: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">
-                      Science-Based Assessment
+                      Independent Decision-Making
                     </h4>
                     <p className="text-sm opacity-90">
-                      Decisions based on rigorous scientific risk assessment
+                      Unlike advisory councils, has independent decision-making powers
                     </p>
                   </div>
                 </div>
@@ -274,10 +270,10 @@ const BiosafetyCouncil: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">
-                      Precautionary Approach
+                      Permit Review & Recommendation
                     </h4>
                     <p className="text-sm opacity-90">
-                      Caution when scientific evidence is insufficient
+                      Review and recommend the issuing of permits for GMO activities
                     </p>
                   </div>
                 </div>
@@ -286,9 +282,9 @@ const BiosafetyCouncil: React.FC = () => {
                     <span className="text-sm font-bold">3</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-1">Transparency</h4>
+                    <h4 className="font-semibold mb-1">International Compliance</h4>
                     <p className="text-sm opacity-90">
-                      Open and transparent decision-making process
+                      Ensures compliance with Cartagena Protocol and other international standards
                     </p>
                   </div>
                 </div>
@@ -297,9 +293,9 @@ const BiosafetyCouncil: React.FC = () => {
                     <span className="text-sm font-bold">4</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-1">Public Participation</h4>
+                    <h4 className="font-semibold mb-1">Statutory Body</h4>
                     <p className="text-sm opacity-90">
-                      Meaningful stakeholder engagement and consultation
+                      Established by Biosafety Act, 2006 (Act No. 7 of 2006)
                     </p>
                   </div>
                 </div>
@@ -356,16 +352,15 @@ const BiosafetyCouncil: React.FC = () => {
         </div>
       </section>
 
-      {/* National Biosafety Committee */}
+      {/* Biosafety Council Members */}
       <section className="py-16 bg-ncrst-grey-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-ncrst-grey mb-4 leading-heading">
-              National Biosafety Committee
+              Biosafety Council Members
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-              Expert advisory body providing scientific and technical guidance
-              on biosafety matters.
+              Expert advisory body providing scientific and technical guidance on biosafety matters.
             </p>
           </div>
 
@@ -403,29 +398,31 @@ const BiosafetyCouncil: React.FC = () => {
 
           <div className="bg-white rounded-xl shadow-lg p-8">
             <h3 className="text-xl font-bold text-ncrst-grey mb-6 leading-heading">
-              Committee Functions
+              Council Functions
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <h4 className="font-semibold text-ncrst-grey mb-3">
-                  Advisory Functions
+                  Regulatory Functions
                 </h4>
                 <ul className="space-y-2 text-sm text-ncrst-grey-dark">
                   <li>• Review and evaluate permit applications</li>
                   <li>• Provide scientific and technical advice</li>
                   <li>• Assess environmental and health risks</li>
                   <li>• Recommend approval conditions</li>
+                  <li>• Monitor compliance and enforcement</li>
                 </ul>
               </div>
               <div>
                 <h4 className="font-semibold text-ncrst-grey mb-3">
-                  Regulatory Support
+                  Advisory Functions
                 </h4>
                 <ul className="space-y-2 text-sm text-ncrst-grey-dark">
                   <li>• Develop technical guidelines</li>
                   <li>• Review monitoring reports</li>
                   <li>• Investigate biosafety incidents</li>
                   <li>• Advise on policy development</li>
+                  <li>• Provide expert consultation</li>
                 </ul>
               </div>
             </div>
@@ -441,8 +438,7 @@ const BiosafetyCouncil: React.FC = () => {
               Application Process & Forms
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-              Download application forms and guidelines for biosafety permit
-              applications.
+              Download application forms and guidelines for biosafety permit applications.
             </p>
           </div>
 
@@ -535,8 +531,7 @@ const BiosafetyCouncil: React.FC = () => {
               Recent Permit Decisions
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-              Transparency in biosafety decision-making through public
-              disclosure of permit decisions.
+              Transparency in biosafety decision-making through public disclosure of permit decisions.
             </p>
           </div>
 
@@ -620,8 +615,7 @@ const BiosafetyCouncil: React.FC = () => {
               Frequently Asked Questions
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-              Common questions about biosafety regulation and permit
-              requirements.
+              Common questions about biosafety regulation and permit requirements.
             </p>
           </div>
 
@@ -647,8 +641,7 @@ const BiosafetyCouncil: React.FC = () => {
                 Need More Information?
               </h3>
               <p className="mb-6 opacity-90 leading-body">
-                Contact our biosafety team for guidance on permit applications
-                and regulatory requirements.
+                Contact our biosafety team for guidance on permit applications and regulatory requirements.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button className="bg-white text-ncrst-green px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">

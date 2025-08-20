@@ -8,91 +8,122 @@ const About: React.FC = () => {
     {
       name: "Prof. Dr Jacob Nyambe",
       role: "Chairperson",
-      committees: ["FRST", "Chairperson of EXCO"],
-      expertise: "Geology & Environmental Sciences",
+      committees: ["Chairperson of EXCO", "FRST"],
+      expertise: "Human Sciences/ Research/ Agriculture/ Economics",
     },
     {
       name: "Prof. Dr Teresia Kaulihowa",
       role: "Vice Chairperson",
       committees: ["FAC", "EXCO"],
-      expertise: "Economics & Development Studies",
+      expertise: "Economics/Research",
     },
     {
-      name: "Prof. Dr. Martha Kandawa-Schulz",
+      name: "Prof. Dr. Fillemon Nangolo",
       role: "Commissioner",
-      committees: ["FRST", "HRC"],
-      expertise: "Biochemistry & Molecular Biology",
-    },
-    {
-      name: "Dr Fillemon Nangolo",
-      role: "Commissioner",
-      committees: ["Chairperson of FRST"],
-      expertise: "Agricultural Sciences",
+      committees: ["Chairperson of FRST", "HRC"],
+      expertise: "Engineering",
     },
     {
       name: "Dr Marius Mutorwa",
       role: "Commissioner",
-      committees: ["FRST"],
-      expertise: "Veterinary Sciences",
+      committees: ["FRST", "HRC"],
+      expertise: "Natural Science",
     },
     {
       name: "Dr. Alisa Amupolo",
       role: "Commissioner",
       committees: ["FAC", "EXCO"],
-      expertise: "Public Health & Epidemiology",
+      expertise: "ICT",
     },
     {
       name: "Ms. Nailoke Mhanda",
       role: "Commissioner",
       committees: ["Chairperson HRC", "EXCO"],
-      expertise: "Human Resources & Administration",
+      expertise: "Legal",
     },
     {
       name: "Mr Titus Kanyanda",
       role: "Commissioner",
-      committees: ["Chairperson of FAC", "FRC", "EXCO"],
-      expertise: "Finance & Risk Management",
+      committees: ["Chairperson of FAC", "FAC", "EXCO"],
+      expertise: "Finance",
     },
   ];
 
   const councils = [
     {
-      name: "Space Science Council",
+      name: "National Space Science Council",
       description:
-        "Provides strategic guidance on space science initiatives and satellite technology development.",
-      members: "12 members including space science experts and engineers",
+        "The National Space Science Council (NSSC) is an advisory body established by the NCRST under the Research, Science and Technology Act, 2004 (Act No. 23 of 2004), as amended. The Council's purpose is to: Provide strategic direction, oversight, and expert advice on the development and implementation of a National Agenda on Space Science and Technologies and provide strategic direction and guidance on policy matters pertaining to Space Science and Technology.",
+      members: "7 members",
       link: "/councils/space-science",
+      type: "Advisory and Technical Council",
+    },
+    {
+      name: "National Indigenous Knowledge Systems Council",
+      description:
+        "The National Indigenous Knowledge System Council (NIKSC) is an advisory body established by the NCRST under the Research, Science and Technology Act, 2004 (Act No. 23 of 2004), as amended. The Council's purpose is to: Provide strategic direction, oversight, and expert advice on the development, protection, and integration of Indigenous Knowledge Systems (IKS) and related technologies into Namibia's national development agenda.",
+      members: "8 members",
+      link: "/councils/iks",
+      type: "Advisory and Technical Council",
     },
     {
       name: "Biosafety Council",
       description:
-        "Regulates the development, handling, transport, use, transfer and release of genetically modified organisms.",
-      members: "9 members with expertise in biotechnology and biosafety",
+        "The Biosafety Council is established under the Biosafety Act, 2006 (Act No. 7 of 2006), to serve as the national regulatory body for genetically modified organisms (GMOs) in Namibia. Its core purpose is to: Regulate and oversee activities involving genetically modified organisms and GMO products in Namibia in order to protect human, animal, and environmental health while supporting responsible scientific advancement and compliance with national and international biosafety standards.",
+      members: "7 members",
       link: "/councils/biosafety",
-    },
-    {
-      name: "National Indigenous Knowledge System",
-      description:
-        "Promotes and preserves traditional knowledge systems and their integration with modern science.",
-      members: "11 members including traditional leaders and knowledge holders",
-      link: "/councils/iks",
+      type: "Regulatory Council",
     },
   ];
 
   const legislation = [
     {
-      title: "Research, Science, Technology and Innovation Act",
-      year: "2004",
+      title: "Research, Science, Technology Act",
+      year: "2004 (Act No. 23 of 2004), as amended",
       description:
         "Establishes NCRST and provides the legal framework for promoting and regulating research, science, and technology in Namibia.",
       status: "Active",
+      category: "Primary Legislation",
     },
     {
       title: "Biosafety Act",
-      year: "2006",
+      year: "2006 (Act No. 7 of 2006)",
       description:
         "Regulates activities involving genetically modified organisms to ensure environmental and human health protection.",
       status: "Active",
+      category: "Primary Legislation",
+    },
+    {
+      title: "Public Enterprises Governance Act",
+      year: "2019 (Act No. 1 of 2019)",
+      description:
+        "Governs the management and oversight of public enterprises including NCRST.",
+      status: "Active",
+      category: "Primary Legislation",
+    },
+    {
+      title: "Public Procurement Amendment Act",
+      year: "2022 (Act No. 3 of 2022)",
+      description:
+        "Amends public procurement procedures and regulations.",
+      status: "Active",
+      category: "Primary Legislation",
+    },
+    {
+      title: "Industrial Property Act",
+      year: "2012 (Act No. 1 of 2012)",
+      description:
+        "Governs intellectual property rights and industrial property protection.",
+      status: "Active",
+      category: "Related Legislation",
+    },
+    {
+      title: "Access to Biological and Genetic Resources and Associated Traditional Knowledge Act",
+      year: "2017 (Act No. 2 of 2017)",
+      description:
+        "Regulates access to biological and genetic resources and associated traditional knowledge.",
+      status: "Active",
+      category: "Related Legislation",
     },
   ];
 
@@ -130,7 +161,6 @@ const About: React.FC = () => {
               <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                 <div className="bg-ncrst-grey p-6 text-white text-center bg-opacity-70">
                   <div className="w-32 h-32 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    {/* <Users className="text-white" size={48} /> */}
                     <img
                       src={ceoImg}
                       alt="CEO"
@@ -316,7 +346,7 @@ const About: React.FC = () => {
               Organisational Structure
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-              Our organizational structure ensures effective governance and
+              Our organisational structure ensures effective governance and
               implementation of our mandate.
             </p>
           </div>
@@ -353,13 +383,34 @@ const About: React.FC = () => {
               <div className="w-1 h-12 bg-ncrst-grey mx-auto"></div>
               <div className="w-0 h-0 border-l-4 border-r-4 border-t-8 border-l-transparent border-r-transparent border-t-ncrst-grey mx-auto"></div>
             </div>
-            <div className="text-center mb-8">
-              <div className="bg-ncrst-grey text-white px-8 py-4 rounded-lg inline-block mb-4">
-                <h3 className="font-bold text-lg leading-heading">
-                  Chief Executive Officer
-                </h3>
-              </div>
-            </div>
+
+                         {/* CEO and Councils with Dotted Line Connection */}
+             <div className="text-center mb-8">
+               <div className="relative max-w-7xl mx-auto">
+                 {/* CEO Position - Centered */}
+                 <div className="bg-ncrst-grey text-white px-8 py-4 rounded-lg inline-block relative">
+                   <h3 className="font-bold text-lg leading-heading">
+                     Chief Executive Officer
+                   </h3>
+                   
+                                        {/* Dotted Line extending from CEO to Councils */}
+                     <div className="absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-full">
+                       <div className="flex items-center">
+                         <div className="w-24 h-0.5 border-t-2 border-dashed border-ncrst-grey"></div>
+                         <div className="w-0 h-0 border-l-4 border-r-4 border-t-8 border-l-transparent border-r-transparent border-t-ncrst-grey ml-1"></div>
+                       </div>
+                     </div>
+                 </div>
+                 
+                 {/* Councils Position */}
+                 <div className="absolute top-0 right-0 bg-ncrst-blue text-white px-8 py-4 rounded-lg" style={{right: '15%'}}>
+                   <h3 className="font-bold text-lg leading-heading">
+                     Councils
+                   </h3>
+                   <p className="text-sm opacity-90 mt-1">(Advisory & Regulatory)</p>
+                 </div>
+               </div>
+             </div>
 
             {/* Arrow Down */}
             <div className="text-center mb-8">
@@ -383,10 +434,9 @@ const About: React.FC = () => {
                   <h4 className="font-bold text-lg leading-heading">
                     General Manager
                   </h4>
-                  <p className="text-sm font-medium mt-1">RSTIC&S</p>
+                  <p className="text-sm font-medium mt-1">RSTICS</p>
                   <p className="text-xs mt-1 opacity-80">
-                    (Research, Science, Technology, Innovation, Communication &
-                    Stakeholder Relations)
+                    (Research, Science, Technology, Innovation, Coordination and Support)
                   </p>
                 </div>
                 <div className="bg-ncrst-gold text-ncrst-grey px-6 py-4 rounded-lg">
@@ -412,7 +462,7 @@ const About: React.FC = () => {
               Councils
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-              Expert advisory bodies providing strategic guidance on specialized
+              Expert advisory and regulatory bodies providing strategic guidance on specialized
               areas of science and technology.
             </p>
           </div>
@@ -436,6 +486,13 @@ const About: React.FC = () => {
                         {council.name}
                       </a>
                     </h3>
+                    <span className={`text-xs px-2 py-1 rounded ${
+                      council.type === "Regulatory Council" 
+                        ? "bg-red-100 text-red-800" 
+                        : "bg-blue-100 text-blue-800"
+                    }`}>
+                      {council.type}
+                    </span>
                   </div>
                 </div>
                 <p className="text-ncrst-grey-dark mb-4 leading-body">
@@ -458,12 +515,12 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Legislation */}
+      {/* Legislative and Governance Framework */}
       <section id="legislation" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-ncrst-grey mb-4 leading-heading">
-              Legislative Framework
+              Legislative and Governance Framework
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
               The legal foundation governing our operations and regulatory
@@ -471,35 +528,103 @@ const About: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {legislation.map((law, index) => (
-              <div
-                key={index}
-                className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-ncrst-blue transition-colors"
-              >
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="bg-ncrst-green/10 p-3 rounded-lg">
-                    <Scale className="text-ncrst-green" size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-ncrst-grey leading-heading">
-                      {law.title}
-                    </h3>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-sm text-ncrst-grey-dark">
-                        Enacted: {law.year}
-                      </span>
-                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">
-                        {law.status}
-                      </span>
+          {/* Primary Legislation */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold text-ncrst-grey mb-6 leading-heading">
+              Primary Legislation
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {legislation.filter(law => law.category === "Primary Legislation").map((law, index) => (
+                <div
+                  key={index}
+                  className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-ncrst-blue transition-colors"
+                >
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="bg-ncrst-green/10 p-3 rounded-lg">
+                      <Scale className="text-ncrst-green" size={24} />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-ncrst-grey leading-heading">
+                        {law.title}
+                      </h3>
+                      <div className="flex items-center space-x-2">
+                        <span className="text-sm text-ncrst-grey-dark">
+                          {law.year}
+                        </span>
+                        <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">
+                          {law.status}
+                        </span>
+                      </div>
                     </div>
                   </div>
+                  <p className="text-ncrst-grey-dark leading-body">
+                    {law.description}
+                  </p>
                 </div>
-                <p className="text-ncrst-grey-dark leading-body">
-                  {law.description}
-                </p>
+              ))}
+            </div>
+          </div>
+
+          {/* Related Legislation */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold text-ncrst-grey mb-6 leading-heading">
+              Related Legislation
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {legislation.filter(law => law.category === "Related Legislation").map((law, index) => (
+                <div
+                  key={index}
+                  className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-ncrst-blue transition-colors"
+                >
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="bg-ncrst-grey/10 p-3 rounded-lg">
+                      <Scale className="text-ncrst-grey" size={24} />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-ncrst-grey leading-heading">
+                        {law.title}
+                      </h3>
+                      <div className="flex items-center space-x-2">
+                        <span className="text-sm text-ncrst-grey-dark">
+                          {law.year}
+                        </span>
+                        <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">
+                          {law.status}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-ncrst-grey-dark leading-body">
+                    {law.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* International Agreements */}
+          <div>
+            <h3 className="text-2xl font-bold text-ncrst-grey mb-6 leading-heading">
+              International Agreements
+            </h3>
+            <div className="bg-white border-2 border-gray-200 rounded-xl p-6">
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="bg-ncrst-blue/10 p-3 rounded-lg">
+                  <Scale className="text-ncrst-blue" size={24} />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-ncrst-grey leading-heading">
+                    Cartagena Protocol on Biosafety to the Convention on Biological Diversity
+                  </h3>
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">
+                    International Agreement
+                  </span>
+                </div>
               </div>
-            ))}
+              <p className="text-ncrst-grey-dark leading-body">
+                International agreement on biosafety that regulates the transboundary movement of living modified organisms (LMOs).
+              </p>
+            </div>
           </div>
         </div>
       </section>

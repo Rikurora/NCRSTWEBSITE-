@@ -19,6 +19,14 @@ const SpaceScienceCoun: React.FC = () => {
       institution: "",
     },
     {
+      name: "Ms. Victoria Munenge",
+      role: "Vice-Chairperson",
+    },
+    {
+      name: "Mr Laban Hiwilepo",
+      role: "Member",
+    },
+    {
       name: "Dr Riaan Steenkamp",
       role: "Member",
     },
@@ -27,19 +35,11 @@ const SpaceScienceCoun: React.FC = () => {
       role: "Member",
     },
     {
-      name: "Mr Laban Hiwilepo",
-      role: "Member",
-    },
-    {
-      name: "Miss Loide Anbelina Shaparara",
+      name: "Col. Petrus N",
       role: "Member",
     },
     {
       name: "Mr Peter Ndemuweda",
-      role: "Member",
-    },
-    {
-      name: "Ms. Victoria Munenge",
       role: "Member",
     },
   ];
@@ -161,9 +161,7 @@ const SpaceScienceCoun: React.FC = () => {
               National Space Science Council
             </h1>
             <p className="text-xl max-w-3xl mx-auto leading-body opacity-90">
-              Advancing Namibia's space science capabilities and leveraging
-              space technology for national development and scientific
-              excellence.
+              An advisory body providing strategic direction and expert advice on the development and implementation of a National Agenda on Space Science and Technologies.
             </p>
           </div>
         </div>
@@ -179,17 +177,13 @@ const SpaceScienceCoun: React.FC = () => {
               </h2>
               <div className="space-y-4 text-ncrst-grey-dark leading-body">
                 <p>
-                  The NSSC performs its functions as per Section 19 (1) of the
-                  Research, Science and Technology Act, 2004 (Act 23 of 2004).
+                  The NSSC performs its functions as per Section 19 (1) of the Research, Science and Technology Act, 2004 (Act 23 of 2004).
                 </p>
                 <p>
-                  The NSSC serves as an advisory body to the NCRST to safeguard
-                  the development and implementation of a national agenda on
-                  space science and technologies in all sectors.
+                  The NSSC serves as an advisory body to the NCRST to safeguard the development and implementation of a national agenda on space science and technologies in all sectors.
                 </p>
                 <p>
-                  The NSSC further provide strategic direction and guidance on
-                  policy issues pertaining to space science and technology.
+                  The NSSC further provides strategic direction and guidance on policy issues pertaining to space science and technology.
                 </p>
               </div>
             </div>
@@ -245,8 +239,7 @@ const SpaceScienceCoun: React.FC = () => {
               Council Members
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-              Leading experts in space science, astronomy, and satellite
-              technology providing strategic guidance.
+              Leading experts in space science, astronomy, and satellite technology providing strategic guidance.
             </p>
           </div>
 
@@ -298,8 +291,7 @@ const SpaceScienceCoun: React.FC = () => {
               Strategic Objectives
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-              Our key focus areas for advancing Namibia's space science and
-              technology capabilities.
+              Our key focus areas for advancing Namibia's space science and technology capabilities.
             </p>
           </div>
 
@@ -337,8 +329,7 @@ const SpaceScienceCoun: React.FC = () => {
               Space Science Programmes
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-              Major initiatives advancing Namibia's space science and technology
-              capabilities.
+              Major initiatives advancing Namibia's space science and technology capabilities.
             </p>
           </div>
 
@@ -476,8 +467,7 @@ const SpaceScienceCoun: React.FC = () => {
               Namibia's Space Science Advantages
             </h2>
             <p className="text-lg opacity-90 max-w-3xl mx-auto leading-body">
-              Unique geographical and environmental factors that make Namibia
-              ideal for space science research.
+              Unique geographical and environmental factors that make Namibia ideal for space science research.
             </p>
           </div>
 
@@ -542,8 +532,7 @@ const SpaceScienceCoun: React.FC = () => {
               </h3>
               <div className="space-y-4">
                 <p className="text-ncrst-grey-dark leading-body">
-                  Join Namibia's space science community and contribute to our
-                  growing capabilities in space research and technology.
+                  Join Namibia's space science community and contribute to our growing capabilities in space research and technology.
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
