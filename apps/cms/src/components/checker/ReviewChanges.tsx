@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { CheckCircle, XCircle, Eye, Filter, Search, Send } from 'lucide-react';
+import { useState } from 'react';
+import { CheckCircle, Send, Search } from 'lucide-react';
 import { Modal } from '../common/Modal';
 import { useContent } from '../../context/ContentContext';
-import { useAuth } from '../../context/AuthContext';
 import { Change } from '../../types';
 
 interface ReviewModalProps {
@@ -13,7 +12,6 @@ interface ReviewModalProps {
 }
 
 function ReviewModal({ change, isOpen, onClose, onForward }: ReviewModalProps) {
-  const { user } = useAuth();
   const [notes, setNotes] = useState('');
 
   const handleSubmit = () => {

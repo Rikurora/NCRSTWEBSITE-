@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FileCheck, List, BarChart3, Clock, User } from 'lucide-react';
+import { useState } from 'react';
+import { FileCheck, List, BarChart3, Clock } from 'lucide-react';
 import { Card } from '../common/Card';
 import { Sidebar } from '../common/Sidebar';
 import { ReviewChanges } from './ReviewChanges';
@@ -8,7 +8,7 @@ import { useContent } from '../../context/ContentContext';
 
 export function CheckerDashboard() {
   const [currentView, setCurrentView] = useState('dashboard');
-  const { changes, content } = useContent();
+  const { changes } = useContent();
 
   const pendingReviews = changes.filter(change => change.status === 'pending_review').length;
   const forwardedChanges = changes.filter(change => change.status === 'pending_approval').length;

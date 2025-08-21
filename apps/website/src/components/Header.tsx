@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Search, Menu, X, ChevronDown } from "lucide-react";
-import logo from "../assets/logo.jpeg";
+import logoWhite from "../assets/NCRST Logo _Horizontal colour white.png";
+import logoColour from "../assets/NCRST Logo _Colour Horizontal.png";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isTopBarCollapsed, setIsTopBarCollapsed] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -55,9 +62,10 @@ const Header: React.FC = () => {
       name: "Technology",
       href: "/technology",
       dropdown: [
-        { name: "Biotechnology Labs", href: "/technology#biotech" },
-        { name: "National AI Working Group", href: "/technology#ai" },
         { name: "Biosafety", href: "/technology#biosafety" },
+        { name: "National AI Working Group", href: "/technology#ai" },
+        { name: "AI Research Projects & Funding", href: "/technology#ai" },
+        { name: "Biotechnology Labs", href: "/technology#biotech" },
         { name: "Space Science and Technology (SST)", href: "/technology#sst" },
         { name: "Tech Resources", href: "/technology#resources" },
       ],
@@ -117,27 +125,56 @@ const Header: React.FC = () => {
     // },
   ];
 
-  // Effect to handle header transparency based on scroll position
+  // Effect to handle header visibility and transparency based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
+      const currentScrollY = window.scrollY;
+      
+      // Handle header transparency
+      setIsScrolled(currentScrollY > 0);
+      
+      // Handle header hide/show based on scroll direction
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down and past the top 100px - hide header
+        setIsHeaderVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up - show header
+        setIsHeaderVisible(true);
+      }
+      
+      // Always show header at the very top
+      if (currentScrollY <= 100) {
+        setIsHeaderVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+      
+      // Hide dropdown when scrolling
+      setHoveredDropdown(null);
+      // Hide search results when scrolling
+      setShowSearchResults(false);
     };
+    
     window.addEventListener("scroll", handleScroll);
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
-  const handleDropdownToggle = (navName: string) => {
-    setActiveDropdown(activeDropdown === navName ? null : navName);
+  const handleDropdownHover = (navName: string) => {
+    setHoveredDropdown(navName);
+  };
+
+  const handleDropdownLeave = () => {
+    setHoveredDropdown(null);
   };
 
   const handleMainNavClick = () => {
-    setActiveDropdown(null);
+    setHoveredDropdown(null);
     setIsMenuOpen(false);
   };
 
   const handleDropdownItemClick = () => {
-    setActiveDropdown(null);
+    setHoveredDropdown(null);
     setIsMenuOpen(false);
   };
 
@@ -163,11 +200,79 @@ const Header: React.FC = () => {
     handleDropdownItemClick();
   };
 
+  // Search functionality
+  const searchPages = [
+    { title: "About Us", path: "/about", keywords: ["about", "commission", "board", "councils", "legislation", "structure"] },
+    { title: "Research", path: "/research", keywords: ["research", "grants", "permits", "symposium", "calls"] },
+    { title: "Science", path: "/science", keywords: ["science", "fair", "stem", "quiz", "olympiads", "space week"] },
+    { title: "Technology", path: "/technology", keywords: ["technology", "biosafety", "ai", "biotechnology", "gmo", "laboratory"] },
+    { title: "Innovation", path: "/innovation", keywords: ["innovation", "boostup", "scale-up", "startup", "hub"] },
+    { title: "Councils", path: "/councils", keywords: ["councils", "biosafety council", "space science", "indigenous knowledge"] },
+    { title: "Resources", path: "/resources", keywords: ["resources", "procurement", "vacancies", "opportunities"] },
+    { title: "Contact", path: "/contact", keywords: ["contact", "location", "phone", "email"] },
+    { title: "News", path: "/news", keywords: ["news", "events", "media", "announcements"] },
+  ];
+
+  const performSearch = (query: string) => {
+    if (!query.trim()) {
+      setSearchResults([]);
+      setShowSearchResults(false);
+      return;
+    }
+
+    setIsSearching(true);
+    const lowercaseQuery = query.toLowerCase();
+    
+    const results = searchPages
+      .filter(page => 
+        page.title.toLowerCase().includes(lowercaseQuery) ||
+        page.keywords.some(keyword => keyword.toLowerCase().includes(lowercaseQuery))
+      )
+      .map(page => ({
+        ...page,
+        relevance: page.title.toLowerCase().includes(lowercaseQuery) ? 2 : 1
+      }))
+      .sort((a, b) => b.relevance - a.relevance)
+      .slice(0, 8);
+
+    setSearchResults(results);
+    setShowSearchResults(true);
+    setIsSearching(false);
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    performSearch(query);
+  };
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      performSearch(searchQuery);
+    }
+  };
+
+  const handleSearchResultClick = (path: string) => {
+    navigate(path);
+    setSearchQuery("");
+    setShowSearchResults(false);
+    setSearchResults([]);
+  };
+
+  const handleSearchBlur = () => {
+    // Delay hiding results to allow for clicks
+    setTimeout(() => {
+      setShowSearchResults(false);
+    }, 200);
+  };
+
   return (
     <header
       className={`
-        fixed top-0 left-0 w-full z-50 transition-colors duration-500
+        fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out
         ${!isScrolled ? "bg-transparent shadow-none" : "bg-white shadow-md"}
+        ${isHeaderVisible ? "translate-y-0" : "-translate-y-full"}
       `}
       style={{
         pointerEvents: "auto",
@@ -176,82 +281,111 @@ const Header: React.FC = () => {
     >
       {/* Top Banner */}
       <div
-        className={`transition-colors duration-500 ${
+        className={`transition-all duration-500 ${
           !isScrolled
             ? "bg-transparent text-white"
             : "bg-ncrst-gold text-blue bg-opacity-100"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center text-sm gap-2">
-            <div>Republic of Namibia</div>
-            {/* Top Banner Navigation - stacked on mobile, inline on desktop */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-              <nav className="flex flex-col sm:flex-row gap-2 sm:gap-4 items-start sm:items-center">
-                <Link
-                  to="/news#news"
-                  className={`transition-colors hover:underline ${
-                    !isScrolled ? "text-white" : "text-blue"
-                  }`}
-                >
-                  News
-                </Link>
-                <Link
-                  to="/news#events"
-                  className={`transition-colors hover:underline ${
-                    !isScrolled ? "text-white" : "text-blue"
-                  }`}
-                >
-                  Events
-                </Link>
-                <Link
-                  to="/news/#media"
-                  className={`transition-colors hover:underline ${
-                    !isScrolled ? "text-white" : "text-blue"
-                  }`}
-                >
-                  Media
-                </Link>
-                <a
-                  href="https://njrst.ncrst.na/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`transition-colors hover:underline ${
-                    !isScrolled ? "text-white" : "text-blue"
-                  }`}
-                >
-                  Open Journal System
-                </a>
-                <Link
-                  to="/#portals"
-                  className={`transition-colors hover:underline ${
-                    !isScrolled ? "text-white" : "text-blue"
-                  }`}
-                >
-                  Portals
-                </Link>
-              </nav>
-              {/* Add left padding on language switch for spacing */}
-              <div className="flex items-center gap-2 mt-2 sm:mt-0 pl-0 sm:pl-8">
-                <button
-                  className={`transition-colors ${
-                    !isScrolled
-                      ? "text-white border-white"
-                      : "hover:text-ncrst-blue"
-                  }`}
-                >
-                  EN
-                </button>
-                <span>|</span>
-                <button
-                  className={`transition-colors ${
-                    !isScrolled
-                      ? "text-white border-white"
-                      : "hover:text-ncrst-gold"
-                  }`}
-                >
-                  Local
-                </button>
+        {/* Mobile Toggle Button */}
+        <div className="lg:hidden flex justify-center py-2">
+          <button
+            onClick={() => setIsTopBarCollapsed(!isTopBarCollapsed)}
+            className={`flex items-center gap-2 px-4 py-1 rounded-md transition-colors ${
+              !isScrolled
+                ? "text-white hover:bg-white/10"
+                : "text-blue hover:bg-blue/10"
+            }`}
+          >
+            <span className="text-sm font-medium">
+              {isTopBarCollapsed ? "Show" : "Hide"} Top Links
+            </span>
+            <ChevronDown
+              size={16}
+              className={`transition-transform ${
+                isTopBarCollapsed ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+        </div>
+
+        {/* Collapsible Content */}
+        <div
+          className={`transition-all duration-500 overflow-hidden ${
+            isTopBarCollapsed ? "max-h-0 py-0" : "max-h-96 py-3"
+          } lg:max-h-none lg:py-3`}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center text-sm gap-2">
+              <div>Republic of Namibia</div>
+              {/* Top Banner Navigation - stacked on mobile, inline on desktop */}
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                <nav className="flex flex-col sm:flex-row gap-2 sm:gap-4 items-start sm:items-center">
+                  <Link
+                    to="/news#news"
+                    className={`transition-colors hover:underline ${
+                      !isScrolled ? "text-white" : "text-blue"
+                    }`}
+                  >
+                    News
+                  </Link>
+                  <Link
+                    to="/news#events"
+                    className={`transition-colors hover:underline ${
+                      !isScrolled ? "text-white" : "text-blue"
+                    }`}
+                  >
+                    Events
+                  </Link>
+                  <Link
+                    to="/news/#media"
+                    className={`transition-colors hover:underline ${
+                      !isScrolled ? "text-white" : "text-blue"
+                    }`}
+                  >
+                    Media
+                  </Link>
+                  <a
+                    href="https://njrst.ncrst.na/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`transition-colors hover:underline ${
+                      !isScrolled ? "text-white" : "text-blue"
+                    }`}
+                  >
+                    Open Journal System
+                  </a>
+                  <Link
+                    to="/#portals"
+                    className={`transition-colors hover:underline ${
+                      !isScrolled ? "text-white" : "text-blue"
+                    }`}
+                  >
+                    Portals
+                  </Link>
+                </nav>
+                {/* Add left padding on language switch for spacing */}
+                <div className="flex items-center gap-2 mt-2 sm:mt-0 pl-0 sm:pl-8">
+                  <button
+                    className={`transition-colors ${
+                      !isScrolled
+                        ? "text-white border-white"
+                        : "hover:text-ncrst-blue"
+                    }`}
+                  >
+                    EN
+                  </button>
+                  <span>|</span>
+                  <button
+                    className={`transition-colors ${
+                      !isScrolled
+                        ? "text-white border-white"
+                        : "hover:text-ncrst-gold"
+                    }`}
+                  >
+                    Local
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -264,52 +398,78 @@ const Header: React.FC = () => {
           {/* Logo - Now links to home */}
           <Link
             to="/"
-            className="flex items-center space-x-3"
+            className="flex items-center"
             onClick={handleMainNavClick}
           >
             <img
-              src={logo}
+              src={!isScrolled ? logoWhite : logoColour}
               alt="NCRST Logo"
-              className="w-12 h-12 object-contain"
+              className="h-20 md:h-28 object-contain"
             />
-            <div>
-              <h1
-                className={`text-xl font-bold leading-heading ${
-                  !isScrolled ? "text-white" : "text-ncrst-grey"
-                }`}
-              >
-                NCRST
-              </h1>
-              <p
-                className={`text-sm ${
-                  !isScrolled ? "text-white" : "text-ncrst-grey-dark"
-                }`}
-              >
-                National Commission on Research, Science & Technology
-              </p>
-            </div>
           </Link>
 
           {/* Search Bar - Desktop */}
           <div className="hidden lg:flex items-center flex-1 max-w-md mx-8">
             <div className="relative w-full">
-              <input
-                type="text"
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className={`w-full pl-10 pr-4 py-2 border ${
-                  !isScrolled
-                    ? "border-white bg-transparent text-white placeholder-white"
-                    : "border-gray-300 text-ncrst-grey"
-                } rounded-lg focus:ring-2 focus:ring-ncrst-blue focus:border-transparent`}
-                aria-label="Search site"
-              />
-              <Search
-                className={`absolute left-3 top-2.5 h-5 w-5 ${
-                  !isScrolled ? "text-white" : "text-gray-400"
-                }`}
-              />
+              <form onSubmit={handleSearchSubmit}>
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  onBlur={handleSearchBlur}
+                  onFocus={() => searchQuery.trim() && setShowSearchResults(true)}
+                  className={`w-full pl-10 pr-4 py-2 border ${
+                    !isScrolled
+                      ? "border-white bg-transparent text-white placeholder-white"
+                      : "border-gray-300 text-ncrst-grey"
+                  } rounded-lg focus:ring-2 focus:ring-ncrst-blue focus:border-transparent`}
+                  aria-label="Search site"
+                />
+                <button
+                  type="submit"
+                  className="absolute right-3 top-2.5 p-1"
+                  aria-label="Search"
+                >
+                  <Search
+                    className={`h-5 w-5 ${
+                      !isScrolled ? "text-white" : "text-gray-400"
+                    }`}
+                  />
+                </button>
+              </form>
+              
+              {/* Search Results Dropdown */}
+              {showSearchResults && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 z-50 max-h-96 overflow-y-auto">
+                  {isSearching ? (
+                    <div className="p-4 text-center text-ncrst-grey">
+                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-ncrst-blue mx-auto"></div>
+                      <p className="mt-2">Searching...</p>
+                    </div>
+                  ) : searchResults.length > 0 ? (
+                    <div>
+                      {searchResults.map((result, index) => (
+                        <button
+                          key={index}
+                          onClick={() => handleSearchResultClick(result.path)}
+                          className="w-full text-left px-4 py-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 transition-colors"
+                        >
+                          <div className="font-medium text-ncrst-grey">{result.title}</div>
+                          <div className="text-sm text-ncrst-grey-dark mt-1">
+                            {result.path}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  ) : searchQuery.trim() ? (
+                    <div className="p-4 text-center text-ncrst-grey">
+                      <p>No results found for "{searchQuery}"</p>
+                      <p className="text-sm mt-1">Try different keywords</p>
+                    </div>
+                  ) : null}
+                </div>
+              )}
             </div>
           </div>
 
@@ -334,58 +494,54 @@ const Header: React.FC = () => {
           <div className="flex justify-center space-x-8 py-4">
             {navigation.map((item) => (
               <div key={item.name} className="relative">
-                {item.dropdown ? (
-                  <div>
-                    <div className="flex items-center">
-                      <Link
-                        to={item.href}
-                        onClick={handleMainNavClick}
-                        className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                          !isScrolled
-                            ? "text-white border-white"
-                            : location.pathname === item.href ||
-                              location.pathname.startsWith(item.href + "/")
-                            ? "text-ncrst-blue bg-ncrst-gold/10"
-                            : "text-ncrst-grey hover:text-ncrst-blue hover:bg-gray-50"
-                        }`}
-                      >
-                        {item.name}
-                      </Link>
-                      <button
-                        onClick={() => handleDropdownToggle(item.name)}
-                        className={`ml-1 p-1 rounded-md ${
-                          !isScrolled
-                            ? "hover:bg-white/10 text-white"
-                            : "hover:bg-gray-50"
-                        }`}
-                        aria-label={`Toggle ${item.name} dropdown`}
-                      >
-                        <ChevronDown
-                          size={16}
-                          className={`transition-transform ${
-                            activeDropdown === item.name ? "rotate-180" : ""
-                          } ${!isScrolled ? "text-white" : ""}`}
-                        />
-                      </button>
-                    </div>
-                    {activeDropdown === item.name && (
-                      <div className="absolute top-full left-0 mt-1 w-80 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50">
-                        {item.dropdown.map((subItem) => (
-                          <a
-                            key={subItem.name}
-                            href={subItem.href}
-                            className="block px-4 py-2 text-sm text-ncrst-grey hover:bg-gray-50 hover:text-ncrst-blue"
-                            onClick={(e) =>
-                              handleAnchorNavigation(subItem.href, e)
-                            }
-                          >
-                            {subItem.name}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ) : (
+                                 {item.dropdown ? (
+                   <div
+                     className="relative"
+                     onMouseEnter={() => handleDropdownHover(item.name)}
+                     onMouseLeave={handleDropdownLeave}
+                   >
+                     <div className="flex items-center">
+                       <Link
+                         to={item.href}
+                         onClick={handleMainNavClick}
+                         className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                           !isScrolled
+                             ? "text-white border-white"
+                             : location.pathname === item.href ||
+                               location.pathname.startsWith(item.href + "/")
+                             ? "text-ncrst-blue bg-ncrst-gold/10"
+                             : "text-ncrst-grey hover:text-ncrst-blue hover:bg-gray-50"
+                         }`}
+                       >
+                         {item.name}
+                       </Link>
+                       <div className="ml-1 p-1">
+                         <ChevronDown
+                           size={16}
+                           className={`transition-transform ${
+                             hoveredDropdown === item.name ? "rotate-180" : ""
+                           } ${!isScrolled ? "text-white" : ""}`}
+                         />
+                       </div>
+                     </div>
+                     {hoveredDropdown === item.name && (
+                       <div className="absolute top-full left-0 mt-1 w-80 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50">
+                         {item.dropdown.map((subItem) => (
+                           <a
+                             key={subItem.name}
+                             href={subItem.href}
+                             className="block px-4 py-2 text-sm text-ncrst-grey hover:bg-gray-50 hover:text-ncrst-blue"
+                             onClick={(e) =>
+                               handleAnchorNavigation(subItem.href, e)
+                             }
+                           >
+                             {subItem.name}
+                           </a>
+                         ))}
+                       </div>
+                     )}
+                   </div>
+                 ) : (
                   <Link
                     to={item.href}
                     onClick={handleMainNavClick}
@@ -412,15 +568,57 @@ const Header: React.FC = () => {
             {/* Mobile Search */}
             <div className="mb-4">
               <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 text-ncrst-grey rounded-lg focus:ring-2 focus:ring-ncrst-blue focus:border-transparent"
-                  aria-label="Search site"
-                />
-                <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+                <form onSubmit={handleSearchSubmit}>
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    onBlur={handleSearchBlur}
+                    onFocus={() => searchQuery.trim() && setShowSearchResults(true)}
+                    className="w-full pl-10 pr-4 py-2 border border-gray-300 text-ncrst-grey rounded-lg focus:ring-2 focus:ring-ncrst-blue focus:border-transparent"
+                    aria-label="Search site"
+                  />
+                  <button
+                    type="submit"
+                    className="absolute right-3 top-2.5 p-1"
+                    aria-label="Search"
+                  >
+                    <Search className="h-5 w-5 text-gray-400" />
+                  </button>
+                </form>
+                
+                {/* Mobile Search Results */}
+                {showSearchResults && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 z-50 max-h-96 overflow-y-auto">
+                    {isSearching ? (
+                      <div className="p-4 text-center text-ncrst-grey">
+                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-ncrst-blue mx-auto"></div>
+                        <p className="mt-2">Searching...</p>
+                      </div>
+                    ) : searchResults.length > 0 ? (
+                      <div>
+                        {searchResults.map((result, index) => (
+                          <button
+                            key={index}
+                            onClick={() => handleSearchResultClick(result.path)}
+                            className="w-full text-left px-4 py-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 transition-colors"
+                          >
+                            <div className="font-medium text-ncrst-grey">{result.title}</div>
+                            <div className="text-sm text-ncrst-grey-dark mt-1">
+                              {result.path}
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    ) : searchQuery.trim() ? (
+                      <div className="p-4 text-center text-ncrst-grey">
+                        <p>No results found for "{searchQuery}"</p>
+                        <p className="text-sm mt-1">Try different keywords</p>
+                      </div>
+                    ) : null}
+                  </div>
+                )}
               </div>
             </div>
 

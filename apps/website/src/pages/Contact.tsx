@@ -123,9 +123,9 @@ const Contact: React.FC = () => {
       <section className="relative bg-gradient-to-r from-ncrst-grey to-ncrst-gold text-white py-32 min-h-[80vh] flex items-center justify-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-heading">
-              Contact Us
-            </h1>
+                    <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-heading">
+          Contact Us
+        </h1>
             <p className="text-xl max-w-3xl mx-auto leading-body opacity-90">
               Get in touch with our team for information, support, or
               collaboration opportunities.

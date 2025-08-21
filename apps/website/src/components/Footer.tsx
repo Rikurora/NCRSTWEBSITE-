@@ -1,29 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ExternalLink, Phone, Mail, MapPin } from "lucide-react";
-import logo from "../assets/logo.jpeg";
+import logo from "../assets/NCRST Logo _Colour Horizontal.png";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-ncrst-grey text-white">
+    <footer className="bg-gradient-to-br from-ncrst-blue via-ncrst-grey to-ncrst-green text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About NCRST */}
           <div>
             <div className="flex items-center space-x-3 mb-4">
-              <div className="bg-white">
-              <img
-              src={logo}
-              alt="NCRST Logo"
-              className="w-12 h-12 object-contain"
-            />
-              </div>
-
-              <div>
-                <h3 className="text-lg font-bold">NCRST</h3>
+              <div className="bg-white p-2 rounded-lg shadow-lg">
+                <img
+                  src={logo}
+                  alt="NCRST Logo"
+                  className="h-12 w-auto object-contain"
+                />
               </div>
             </div>
-            <p className="text-gray-300 text-sm leading-body mb-4">
+            <p className="text-gray-200 text-sm leading-body mb-4">
               Promoting and regulating Research, Science, Technology,
               Innovation, and Biosafety in Namibia.
             </p>

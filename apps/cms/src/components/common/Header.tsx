@@ -25,12 +25,14 @@ export function Header() {
       return;
     }
     
-    const success = await changePassword(passwordForm.currentPassword, passwordForm.newPassword);
-    if (success) {
+    if (!changePassword) return;
+    
+    try {
+      await changePassword(passwordForm.currentPassword, passwordForm.newPassword);
       alert('Password changed successfully');
       setShowPasswordModal(false);
       setPasswordForm({ currentPassword: '', newPassword: '', confirmPassword: '' });
-    } else {
+    } catch {
       alert('Failed to change password. Please check your current password.');
     }
   };
@@ -103,7 +105,7 @@ export function Header() {
             {/* Role Switcher for Demo */}
             <select
               value={user?.role || ''}
-              onChange={(e) => switchRole(e.target.value as 'ccm_admin' | 'editor' | 'checker')}
+              onChange={(_e) => switchRole?.()}
               className="px-3 py-1 text-sm bg-[#6a6968] text-white border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ffd332]"
             >
               <option value="ccm_admin">CCM Admin</option>

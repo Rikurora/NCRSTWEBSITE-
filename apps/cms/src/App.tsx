@@ -1,26 +1,20 @@
-import React from 'react';
-import { AuthProvider, useAuth } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
 import { ContentProvider } from './context/ContentContext';
-import { Login } from './pages/Login';
-import { Dashboard } from './pages/Dashboard';
-
-function AppContent() {
-  const { user } = useAuth();
-
-  if (!user) {
-    return <Login />;
-  }
-
-  return <Dashboard />;
-}
+import { WorkflowProvider } from './context/WorkflowContext';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRoutes from './routes';
 
 function App() {
   return (
-    <AuthProvider>
-      <ContentProvider>
-        <AppContent />
-      </ContentProvider>
-    </AuthProvider>
+    <Router>
+      <AuthProvider>
+        <ContentProvider>
+          <WorkflowProvider>
+            <AppRoutes />
+          </WorkflowProvider>
+        </ContentProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Edit, Plus, Search, Filter, Eye, EyeOff } from 'lucide-react';
+import { Edit, Plus, Search, Filter } from 'lucide-react';
 import { Modal } from '../common/Modal';
 import { useContent } from '../../context/ContentContext';
 import { User } from '../../types';

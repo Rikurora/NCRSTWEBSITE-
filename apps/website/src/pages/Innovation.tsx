@@ -14,7 +14,7 @@ import {
   Star,
   Globe,
 } from "lucide-react";
-import pexel4 from "../assets/pexels4.jpg";
+import pexel4 from "../assets/ai-nuclear-energy-future-innovation-disruptive-technology.jpg";
 
 const Innovation: React.FC = () => {
   const navigate = useNavigate();
@@ -152,7 +152,7 @@ const Innovation: React.FC = () => {
     <div>
       {/* Page Header */}
       <section
-        className="relative min-h-[75vh] flex items-center justify-center"
+        className="relative min-h-[75vh] flex items-center justify-center pt-40 md:pt-48 lg:pt-56"
         style={{
           backgroundImage: `url(${pexel4})`,
           backgroundSize: "cover",
@@ -163,7 +163,7 @@ const Innovation: React.FC = () => {
         <div className="absolute inset-0 bg-black/90"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 mt-10 leading-heading text-white">
+            <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-heading text-white">
               Innovation & Entrepreneurship
             </h1>
             <p className="text-xl max-w-3xl mx-auto leading-body opacity-90 text-white">

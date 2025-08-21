@@ -9,42 +9,43 @@ import {
   Calendar,
   FileText,
 } from "lucide-react";
+import iksBanner from "../assets/closeup-shot-cornfield-with-green-leaves-blurred-background.jpg";
 
 const IKS: React.FC = () => {
   const councilMembers = [
     {
-      name: "Dr Fillemon Nangolo",
+      name: "Prof. Dr. Fillemon Nangolo",
       role: "Chairperson",
       expertise: "",
       community: "",
     },
     {
       name: "Dr. Michael Shirungu",
-      role: "Council Member",
+      role: "Vice-Chairperson",
     },
     {
       name: "Ms. Munolwisho Ipangelua",
-      role: "Council Member",
+      role: "Member",
     },
     {
       name: "Dr Michael Akuupa",
-      role: "Council Member",
+      role: "Member",
     },
     {
       name: "Prof. Dr Nailoke Kadhila",
-      role: "Council Member",
+      role: "Member",
     },
     {
       name: "Ms Nzila Mubusisi",
-      role: "Council Member",
+      role: "Member",
     },
     {
       name: "Mr Onesmus Joseph",
-      role: "Council Member",
+      role: "Member",
     },
     {
       name: "Mr Henry Ndengejeho",
-      role: "Council Member",
+      role: "Member",
     },
   ];
 
@@ -167,15 +168,23 @@ const IKS: React.FC = () => {
   return (
     <div>
       {/* Page Header */}
-      <section className="relative bg-gradient-to-r from-ncrst-grey to-ncrst-gold text-white py-32 min-h-[80vh] flex items-center justify-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section
+        className="relative min-h-[75vh] flex items-center justify-center pt-40 md:pt-48 lg:pt-56"
+        style={{
+          backgroundImage: `url(${iksBanner})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-heading">
-              National Indigenous Knowledge System (IKS)
+            <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-heading text-white">
+              National Indigenous Knowledge Systems Council (NIKSC)
             </h1>
-            <p className="text-xl max-w-3xl mx-auto leading-body opacity-90">
-              Promoting, preserving, and integrating traditional knowledge
-              systems with modern science for sustainable development.
+            <p className="text-xl max-w-3xl mx-auto leading-body opacity-90 text-white">
+              An advisory body providing strategic direction and expert advice on the development, protection, and integration of Indigenous Knowledge Systems into Namibia's national development agenda.
             </p>
           </div>
         </div>
@@ -191,18 +200,13 @@ const IKS: React.FC = () => {
               </h2>
               <div className="space-y-4 text-ncrst-grey-dark leading-body">
                 <p>
-                  The NIKSC performs its functions as per Section 19 (1) of the
-                  Research, Science and Technology Act, 2004 (Act 23 of 2004).
+                  The NIKSC performs its functions as per Section 19 (1) of the Research, Science and Technology Act, 2004 (Act 23 of 2004).
                 </p>
                 <p>
-                  The NIKSC serves as an advisory body to the NCRST to
-                  facilitate the development and implementation of a national
-                  agenda on Indigenous Knowledge System (IKS) in all sectors.
+                  The NIKSC serves as an advisory body to the NCRST to facilitate the development and implementation of a national agenda on Indigenous Knowledge System (IKS) in all sectors.
                 </p>
                 <p>
-                  The Council further provides strategic direction and guidance
-                  on policy issues and other matters related to IKS, e.g.,
-                  ethics in IKS research.
+                  The Council further provides strategic direction and guidance on policy issues and other matters related to IKS, e.g., ethics in IKS research.
                 </p>
               </div>
             </div>
@@ -255,11 +259,10 @@ const IKS: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-ncrst-grey mb-4 leading-heading">
-              IKS Council Members
+              NIKSC Council Members
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-              Traditional leaders, knowledge holders, and researchers working
-              together to preserve and promote indigenous knowledge.
+              Traditional leaders, knowledge holders, and researchers working together to preserve and promote indigenous knowledge.
             </p>
           </div>
 
@@ -311,8 +314,7 @@ const IKS: React.FC = () => {
               Knowledge Areas
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-              Key areas of traditional knowledge that we document, preserve, and
-              promote.
+              Key areas of traditional knowledge that we document, preserve, and promote.
             </p>
           </div>
 
@@ -360,8 +362,7 @@ const IKS: React.FC = () => {
               Current Initiatives
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-              Active projects documenting and preserving traditional knowledge
-              across Namibian communities.
+              Active projects documenting and preserving traditional knowledge across Namibian communities.
             </p>
           </div>
 
@@ -503,8 +504,7 @@ const IKS: React.FC = () => {
                 Research Ethics & Community Protocols
               </h3>
               <p className="text-lg opacity-90 max-w-3xl mx-auto leading-body">
-                Ensuring respectful and ethical research practices that honor
-                traditional knowledge holders and communities.
+                Ensuring respectful and ethical research practices that honor traditional knowledge holders and communities.
               </p>
             </div>
 
@@ -552,8 +552,7 @@ const IKS: React.FC = () => {
               </h3>
               <div className="space-y-4">
                 <p className="text-ncrst-grey-dark leading-body">
-                  Partner with us to document, preserve, and promote traditional
-                  knowledge while respecting community rights and protocols.
+                  Partner with us to document, preserve, and promote traditional knowledge while respecting community rights and protocols.
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
@@ -597,8 +596,7 @@ const IKS: React.FC = () => {
                     Traditional Knowledge Symposium
                   </h4>
                   <p className="text-sm text-ncrst-grey-dark">
-                    Annual gathering of traditional knowledge holders and
-                    researchers
+                    Annual gathering of traditional knowledge holders and researchers
                   </p>
                 </div>
                 <div className="bg-white p-4 rounded-lg">
@@ -626,8 +624,7 @@ const IKS: React.FC = () => {
                     Traditional Medicine Conference
                   </h4>
                   <p className="text-sm text-ncrst-grey-dark">
-                    Conference on traditional healing practices and modern
-                    medicine
+                    Conference on traditional healing practices and modern medicine
                   </p>
                 </div>
               </div>

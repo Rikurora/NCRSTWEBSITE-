@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Edit, Trash2, Eye, Clock, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import { useState } from 'react';
+import { Eye, Clock, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { Modal } from '../common/Modal';
 import { useContent } from '../../context/ContentContext';
 import { useAuth } from '../../context/AuthContext';
@@ -146,7 +146,7 @@ export function MyChanges() {
         <h2 className="text-3xl font-bold text-[#777675] mb-2">My Changes</h2>
         <p className="text-gray-600">Track the status of your content submissions</p>
         <div className="text-sm text-gray-500 mt-2">
-          Department: {user?.department} • {statusCounts.all} total changes
+                          User: {user?.name} • {statusCounts.all} total changes
         </div>
       </div>
 

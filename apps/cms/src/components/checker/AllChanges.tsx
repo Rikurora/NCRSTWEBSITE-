@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Search, Filter, CheckCircle, XCircle, Clock, AlertCircle } from 'lucide-react';
 import { useContent } from '../../context/ContentContext';
 

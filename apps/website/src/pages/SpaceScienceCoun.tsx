@@ -9,6 +9,7 @@ import {
   Target,
   BookOpen,
 } from "lucide-react";
+import spaceBanner from "../assets/ai-nuclear-energy-industry-innovation-smart-grid-disruptive-technology.jpg";
 
 const SpaceScienceCoun: React.FC = () => {
   const councilMembers = [
@@ -19,6 +20,14 @@ const SpaceScienceCoun: React.FC = () => {
       institution: "",
     },
     {
+      name: "Ms. Victoria Munenge",
+      role: "Vice-Chairperson",
+    },
+    {
+      name: "Mr Laban Hiwilepo",
+      role: "Member",
+    },
+    {
       name: "Dr Riaan Steenkamp",
       role: "Member",
     },
@@ -27,19 +36,11 @@ const SpaceScienceCoun: React.FC = () => {
       role: "Member",
     },
     {
-      name: "Mr Laban Hiwilepo",
-      role: "Member",
-    },
-    {
-      name: "Miss Loide Anbelina Shaparara",
+      name: "Col. Petrus N",
       role: "Member",
     },
     {
       name: "Mr Peter Ndemuweda",
-      role: "Member",
-    },
-    {
-      name: "Ms. Victoria Munenge",
       role: "Member",
     },
   ];
@@ -153,17 +154,24 @@ const SpaceScienceCoun: React.FC = () => {
 
   return (
     <div>
-      {/* Page Header */}
-      <section className="relative bg-gradient-to-r from-ncrst-grey to-ncrst-gold text-white py-32 min-h-[80vh] flex items-center justify-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Page Header */}
+      <section
+        className="relative min-h-[75vh] flex items-center justify-center pt-40 md:pt-48 lg:pt-56"
+        style={{
+          backgroundImage: `url(${spaceBanner})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-heading">
+            <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-heading text-white">
               National Space Science Council
             </h1>
-            <p className="text-xl max-w-3xl mx-auto leading-body opacity-90">
-              Advancing Namibia's space science capabilities and leveraging
-              space technology for national development and scientific
-              excellence.
+            <p className="text-xl max-w-3xl mx-auto leading-body opacity-90 text-white">
+              An advisory body providing strategic direction and expert advice on the development and implementation of a National Agenda on Space Science and Technologies.
             </p>
           </div>
         </div>
@@ -179,17 +187,13 @@ const SpaceScienceCoun: React.FC = () => {
               </h2>
               <div className="space-y-4 text-ncrst-grey-dark leading-body">
                 <p>
-                  The NSSC performs its functions as per Section 19 (1) of the
-                  Research, Science and Technology Act, 2004 (Act 23 of 2004).
+                  The NSSC performs its functions as per Section 19 (1) of the Research, Science and Technology Act, 2004 (Act 23 of 2004).
                 </p>
                 <p>
-                  The NSSC serves as an advisory body to the NCRST to safeguard
-                  the development and implementation of a national agenda on
-                  space science and technologies in all sectors.
+                  The NSSC serves as an advisory body to the NCRST to safeguard the development and implementation of a national agenda on space science and technologies in all sectors.
                 </p>
                 <p>
-                  The NSSC further provide strategic direction and guidance on
-                  policy issues pertaining to space science and technology.
+                  The NSSC further provides strategic direction and guidance on policy issues pertaining to space science and technology.
                 </p>
               </div>
             </div>
@@ -245,8 +249,7 @@ const SpaceScienceCoun: React.FC = () => {
               Council Members
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-              Leading experts in space science, astronomy, and satellite
-              technology providing strategic guidance.
+              Leading experts in space science, astronomy, and satellite technology providing strategic guidance.
             </p>
           </div>
 
@@ -298,8 +301,7 @@ const SpaceScienceCoun: React.FC = () => {
               Strategic Objectives
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-              Our key focus areas for advancing Namibia's space science and
-              technology capabilities.
+              Our key focus areas for advancing Namibia's space science and technology capabilities.
             </p>
           </div>
 
@@ -337,8 +339,7 @@ const SpaceScienceCoun: React.FC = () => {
               Space Science Programmes
             </h2>
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-              Major initiatives advancing Namibia's space science and technology
-              capabilities.
+              Major initiatives advancing Namibia's space science and technology capabilities.
             </p>
           </div>
 
@@ -476,8 +477,7 @@ const SpaceScienceCoun: React.FC = () => {
               Namibia's Space Science Advantages
             </h2>
             <p className="text-lg opacity-90 max-w-3xl mx-auto leading-body">
-              Unique geographical and environmental factors that make Namibia
-              ideal for space science research.
+              Unique geographical and environmental factors that make Namibia ideal for space science research.
             </p>
           </div>
 
@@ -542,8 +542,7 @@ const SpaceScienceCoun: React.FC = () => {
               </h3>
               <div className="space-y-4">
                 <p className="text-ncrst-grey-dark leading-body">
-                  Join Namibia's space science community and contribute to our
-                  growing capabilities in space research and technology.
+                  Join Namibia's space science community and contribute to our growing capabilities in space research and technology.
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
