@@ -24,7 +24,7 @@ export default defineConfig({
     port: 3000,
   },
   build: {
-    outDir: '../../',
+    outDir: 'dist',
     sourcemap: true,
     rollupOptions: {
       output: {
