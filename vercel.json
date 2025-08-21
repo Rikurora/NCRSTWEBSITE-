@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm build:website",
+  "buildCommand": "cd apps/website && pnpm install && pnpm build",
   "outputDirectory": ".",
   "framework": "vite",
   "rewrites": [
