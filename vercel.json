@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm --filter website build",
+  "buildCommand": "pnpm build:website",
   "outputDirectory": ".",
   "framework": "vite",
   "rewrites": [
