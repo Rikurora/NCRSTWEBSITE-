@@ -8,8 +8,16 @@ import path from 'path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 // Determine base path based on environment
-const isVercel = process.env.VERCEL === '1' || process.env.VERCEL_ENV
+const isVercel = process.env.VERCEL === '1' || process.env.VERCEL_ENV || process.env.VERCEL_URL
 const base = isVercel ? '/' : '/NCRSTWEBSITE-/'
+
+console.log('Environment check:', { 
+  VERCEL: process.env.VERCEL, 
+  VERCEL_ENV: process.env.VERCEL_ENV, 
+  VERCEL_URL: process.env.VERCEL_URL,
+  isVercel,
+  base 
+})
 
 // https://vitejs.dev/config/
 export default defineConfig({
