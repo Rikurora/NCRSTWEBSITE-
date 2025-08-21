@@ -6,6 +6,11 @@ node_modules/
 dist/
 build/
 
+# GitHub Pages build artifacts (generated in root)
+index.html
+assets/
+.nojekyll
+
 # Environment files
 .env
 .env.local
