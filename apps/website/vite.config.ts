@@ -7,6 +7,10 @@ import path from 'path'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
+// Determine base path based on environment
+const isVercel = process.env.VERCEL === '1' || process.env.VERCEL_ENV
+const base = isVercel ? '/' : '/NCRSTWEBSITE-/'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
@@ -30,5 +34,5 @@ export default defineConfig({
       }
     }
   },
-  base: '/NCRSTWEBSITE-/',
+  base: base,
 }) 
