@@ -92,7 +92,7 @@ const Councils: React.FC = () => {
           <div className="text-center">
                     <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-heading text-white">
           NCRST Councils
-        </h1>
+            </h1>
             <p className="text-xl max-w-3xl mx-auto leading-body opacity-90 text-white">
               Expert advisory and regulatory bodies providing strategic guidance on specialized areas of science and technology.
             </p>

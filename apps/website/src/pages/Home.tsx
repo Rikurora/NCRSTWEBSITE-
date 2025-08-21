@@ -545,7 +545,7 @@ const Home: React.FC = () => {
       {/* Statistics Dashboard */}
       <section
         id="impact-statistics"
-        className="py-16 bg-ncrst-blue text-white"
+        className="py-12 bg-ncrst-blue text-white mb-16"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">

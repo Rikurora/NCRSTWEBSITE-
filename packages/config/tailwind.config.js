@@ -6,9 +6,10 @@ export default {
       colors: {
         ncrst: {
           grey: '#777675',
-          gold: '#FFD332',
+          gold: '#ffd332',
           green: '#009E85',
           blue: '#312783',
+          red: '#e5152b',
           yellow: "#F59E0B",
           'grey-light': '#f8f8f8',
           'grey-dark': '#5a5958',
