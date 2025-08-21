@@ -9,6 +9,7 @@ import {
   Clock,
   XCircle,
 } from "lucide-react";
+import biosafetyBanner from "../assets/scientist-holding-petri-dish-tweezers.jpg";
 
 const BiosafetyCouncil: React.FC = () => {
   const committeeMembers = [
@@ -194,13 +195,22 @@ const BiosafetyCouncil: React.FC = () => {
   return (
     <div>
       {/* Page Header */}
-      <section className="relative bg-gradient-to-r from-ncrst-grey to-ncrst-gold text-white py-32 min-h-[80vh] flex items-center justify-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section
+        className="relative min-h-[75vh] flex items-center justify-center pt-40 md:pt-48 lg:pt-56"
+        style={{
+          backgroundImage: `url(${biosafetyBanner})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-heading">
-              Biosafety Council
-            </h1>
-            <p className="text-xl max-w-3xl mx-auto leading-body opacity-90">
+                    <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-heading text-white">
+          Biosafety Council
+        </h1>
+            <p className="text-xl max-w-3xl mx-auto leading-body opacity-90 text-white">
               A statutory body established by an Act of Parliament to regulate activities involving GMOs, serving as the national regulatory authority on biosafety matters.
             </p>
           </div>

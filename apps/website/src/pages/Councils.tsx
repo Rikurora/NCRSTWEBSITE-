@@ -11,7 +11,7 @@ import {
   Rocket,
   Star,
 } from "lucide-react";
-import pexel12 from "../assets/pexels12.jpg";
+import pexel12 from "../assets/microscope-dna.jpg";
 
 const Councils: React.FC = () => {
   const councils = [
@@ -79,7 +79,7 @@ const Councils: React.FC = () => {
     <div>
       {/* Page Header */}
       <section
-        className="relative min-h-[75vh] flex items-center justify-center"
+        className="relative min-h-[75vh] flex items-center justify-center pt-40 md:pt-48 lg:pt-56"
         style={{
           backgroundImage: `url(${pexel12})`,
           backgroundSize: "cover",
@@ -90,9 +90,9 @@ const Councils: React.FC = () => {
         <div className="absolute inset-0 bg-black/90"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 mt-10 leading-heading text-white">
-              NCRST Councils
-            </h1>
+                    <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-heading text-white">
+          NCRST Councils
+        </h1>
             <p className="text-xl max-w-3xl mx-auto leading-body opacity-90 text-white">
               Expert advisory and regulatory bodies providing strategic guidance on specialized areas of science and technology.
             </p>
@@ -168,9 +168,9 @@ const Councils: React.FC = () => {
                 <div className="bg-ncrst-blue/5 border border-ncrst-blue/20 rounded-lg p-4">
                   <p className="text-ncrst-grey-dark">
                     The Councils also submit a statement of its annual workplan to the Board of Commissioners for the financial year for budget allocation as well as the annual report for the inclusion in the Annual Report of the Commission.
-                  </p>
-                </div>
+                </p>
               </div>
+            </div>
             </div>
           </div>
         </div>
@@ -199,8 +199,8 @@ const Councils: React.FC = () => {
                         <IconComponent size={32} />
                         <h3 className="text-2xl font-bold leading-heading">
                           {council.name}
-                        </h3>
-                      </div>
+                    </h3>
+                  </div>
                       <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${
                         council.type === "Regulatory Council" 
                           ? "bg-white/20 text-white" 
@@ -298,7 +298,7 @@ const Councils: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+              </div>
       </section>
 
       {/* Governance Structure */}
@@ -311,7 +311,7 @@ const Councils: React.FC = () => {
             <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
               The interrelationship between the Board, its sub-committees, and the advisory councils.
             </p>
-          </div>
+            </div>
 
           <div className="bg-white rounded-xl shadow-lg p-8 border border-ncrst-gold/20">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -336,7 +336,7 @@ const Councils: React.FC = () => {
               <div className="text-center">
                 <div className="bg-ncrst-green text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <Scale size={32} />
-                </div>
+              </div>
                 <h3 className="text-lg font-bold text-ncrst-grey mb-2">Specialized Councils</h3>
                 <p className="text-sm text-ncrst-grey-dark">
                   Advisory and regulatory functions

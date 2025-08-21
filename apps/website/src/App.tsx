@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ScrollToTop from "./components/ScrollToTop";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
@@ -18,8 +18,13 @@ import Procurement from "./pages/Procurement";
 import Vacancies from "./pages/Vacancies";
 import News from "./pages/News";
 import Contact from "./pages/Contact";
+import { initializeImagePreloading } from "./utils/imagePreloader";
 
 function App() {
+  useEffect(() => {
+    initializeImagePreloading();
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />

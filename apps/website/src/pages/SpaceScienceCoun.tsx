@@ -9,6 +9,7 @@ import {
   Target,
   BookOpen,
 } from "lucide-react";
+import spaceBanner from "../assets/ai-nuclear-energy-industry-innovation-smart-grid-disruptive-technology.jpg";
 
 const SpaceScienceCoun: React.FC = () => {
   const councilMembers = [
@@ -153,14 +154,23 @@ const SpaceScienceCoun: React.FC = () => {
 
   return (
     <div>
-      {/* Page Header */}
-      <section className="relative bg-gradient-to-r from-ncrst-grey to-ncrst-gold text-white py-32 min-h-[80vh] flex items-center justify-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Page Header */}
+      <section
+        className="relative min-h-[75vh] flex items-center justify-center pt-40 md:pt-48 lg:pt-56"
+        style={{
+          backgroundImage: `url(${spaceBanner})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-heading">
+            <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-heading text-white">
               National Space Science Council
             </h1>
-            <p className="text-xl max-w-3xl mx-auto leading-body opacity-90">
+            <p className="text-xl max-w-3xl mx-auto leading-body opacity-90 text-white">
               An advisory body providing strategic direction and expert advice on the development and implementation of a National Agenda on Space Science and Technologies.
             </p>
           </div>
