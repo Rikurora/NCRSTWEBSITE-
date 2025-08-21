@@ -21,6 +21,14 @@ export default defineConfig({
   build: {
     outDir: '../../',
     sourcemap: true,
+    rollupOptions: {
+      output: {
+        // Add cache busting to file names
+        entryFileNames: `assets/[name]-[hash].js`,
+        chunkFileNames: `assets/[name]-[hash].js`,
+        assetFileNames: `assets/[name]-[hash].[ext]`
+      }
+    }
   },
   base: '/NCRSTWEBSITE-/',
 }) 
