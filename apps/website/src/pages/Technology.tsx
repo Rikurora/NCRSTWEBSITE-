@@ -14,6 +14,7 @@ import {
   AlertTriangle,
   CheckCircle,
   Clock,
+  ArrowRight,
 } from "lucide-react";
 import pexel7 from "../assets/ai-chip-artificial-intelligence-future-technology-innovation.jpg";
 
@@ -85,6 +86,84 @@ const Technology: React.FC = () => {
       type: "Whitepaper",
       size: "2.1 MB",
       downloads: "2,150",
+    },
+  ];
+
+  const spaceScienceInitiatives = [
+    {
+      title: "Namibia Space Science and Technology Policy (NSSTP)",
+      description: "Guiding framework to position Namibia as a global player in space science and technologies, leveraging benefits to drive socio-economic development.",
+      status: "Launched June 5, 2021",
+      objective: "Build national capacity in various areas of space science arena through national, regional, and international collaborations.",
+      link: "https://www.ncrst.na/",
+      icon: "📋",
+    },
+    {
+      title: "China Manned Space Engineering Programme",
+      description: "Renewed agreement facilitating continuation of operations at the satellite Tracking and Command Station in Swakopmund.",
+      status: "Active Partnership",
+      objective: "Provide training to Namibians in space science and technology fields.",
+      details: "NCRST and MHETI facilitate programs and initiatives from this agreement.",
+      icon: "🇨🇳",
+    },
+    {
+      title: "Satellite Data Ground Receiving Station (SDGRS)",
+      description: "Agreement signed in 2018 to build a station near Windhoek for receiving remote sensing data from CBERS-4A satellite.",
+      status: "Construction in Progress",
+      objective: "Provide data for agriculture, water resources, forestry, disaster risk management, and fisheries sectors.",
+      details: "NCRST supports MHETI in coordinating project implementation.",
+      icon: "📡",
+    },
+    {
+      title: "High Energy Stereoscopic System (H.E.S.S.)",
+      description: "Observatory for studying Very High Energy (VHE) gamma-ray astrophysics, located near Gamsberg Mountains.",
+      status: "Operational",
+      objective: "Explore gamma-ray sources and contribute to astronomical discoveries.",
+      details: "H.E.S.S. ranks among the first ten best telescopes in the world.",
+      link: "https://www.mpi-hd.mpg.de/hfm/HESS/pages/about/site/",
+      icon: "🔭",
+    },
+    {
+      title: "Square Kilometre Array (SKA) & African VLBI Network (AVN)",
+      description: "International effort to build the world's largest radio telescope, with Namibia as a partner country.",
+      status: "Development Phase",
+      objective: "Deliver transformational increase in science capability and develop radio astronomy communities in Africa.",
+      details: "Namibia received High-Performance Computing equipment through DARA initiative.",
+      link: "https://www.sarao.ac.za/about/the-project/",
+      icon: "🌌",
+    },
+    {
+      title: "World Space Week Coordination",
+      description: "United Nations declared event celebrated annually between 4-10 October to celebrate science and technology.",
+      status: "Annual Event",
+      objective: "Celebrate the role of science and technology in bettering human condition.",
+      details: "NSRD coordinates national celebrations and reports activities to World Space Week Association.",
+      link: "https://www.worldspaceweek.org/about/",
+      icon: "🌍",
+    },
+  ];
+
+  const spaceSciencePartnerships = [
+    {
+      title: "H.E.S.S. Continuation Agreement",
+      description: "Sets conditions for collaboration in H.E.S.S. Phase II operations from October 1, 2019, to September 30, 2024.",
+      partners: ["NCRST", "University of Namibia", "International H.E.S.S. Consortium"],
+      status: "Extended until September 30, 2024",
+      icon: "🤝",
+    },
+    {
+      title: "SKA African Partner Countries",
+      description: "Radio Astronomy Agreement between SKA African Partner Countries with approved SKA/AVN Strategy.",
+      partners: ["Namibia", "South Africa", "Other African Partner Countries"],
+      status: "Active Partnership",
+      icon: "🌍",
+    },
+    {
+      title: "China-Brazil Earth Resource Satellite Program",
+      description: "Partnership for CBERS-4A satellite data reception and processing.",
+      partners: ["Namibia", "China", "Brazil"],
+      status: "Active Partnership",
+      icon: "🛰️",
     },
   ];
 

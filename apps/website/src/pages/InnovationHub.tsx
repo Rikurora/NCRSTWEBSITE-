@@ -14,7 +14,7 @@ const Innovation: React.FC = () => {
         "Developed a mobile app & website, expanded to an Author Hub for African writers, increased social media presence, and secured seed funding from Impacther Africa",
       funding: "BOOST-UP programme",
       image:
-        "https://external.fers4-1.fna.fbcdn.net/emg1/v/t13/4227578532416473?url=https%3A%2F%2Fnamibiatoday.com%2Fwp-content%2Fuploads%2F2025%2F01%2FVictoria-Haihambi.png&fb_obo=1&utld=namibiatoday.com&stp=c0.5000x0.5000f_dst-jpg_flffffff_p500x261_q75_tt6&_nc_gid=Qw7fklvl8Hk4yQg8XSpm1w&_nc_oc=AdkjrC1AMA3_XmwRADX0T6Xo_9nq71BvjcIDTodrj2qZoWwgg7rmpVWm-p33GDgavbo&ccb=13-1&oh=06_Q3-0Aej4-mIGHEqqLh_2rsvIQlIh1JNZwq24VlFe8oBUroDA&oe=685EE9AC&_nc_sid=c97757",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-5FLeTVRRcojZo-9WJwBUCc0R0LdMLI0BIhe4Q4g7FdAJh9gWjxwiUAdHO6Qu0xg74Mk&usqp=CAU",
     },
     {
       name: "Sara Iyaloo S. Ekondo",
@@ -26,7 +26,7 @@ const Innovation: React.FC = () => {
         "Reduced farm-level food spoilage, created jobs, and built a small-holder farmer database for sustainable sourcing",
       funding: "NICW programme",
       image:
-        "https://scontent.fers4-1.fna.fbcdn.net/v/t39.30808-6/481176930_647080284525501_5494073247083489745_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ccKrlaDeBIoQ7kNvwF1sU1-&_nc_oc=AdmMXurbFCi2DE7UOx5Jp470bjqSBqE_oDL4lSjsgfhg9qdkgVbQ1XDF4vhcTAcCZBY&_nc_zt=23&_nc_ht=scontent.fers4-1.fna&_nc_gid=4Pps6uV_ihaeDLzMdfPB3Q&oh=00_AfPHHgleXL2TGUU5sYkphO7a5rOt6WTLgMU6LTV3OIdnhg&oe=6862C635",
+        "apps/website/src/assets/awana-logo.png",
     },
     {
       name: "Verna Nghuumono",
@@ -309,7 +309,7 @@ const Innovation: React.FC = () => {
     <div>
       {/* Page Header */}
       <section
-        className="relative min-h-[75vh] flex items-center justify-center"
+        className="relative min-h-[75vh] flex items-center justify-center pt-40 md:pt-48 lg:pt-56"
         style={{
           backgroundImage: `url(${pexel4})`,
           backgroundSize: "cover",
@@ -320,7 +320,7 @@ const Innovation: React.FC = () => {
         <div className="absolute inset-0 bg-black/90"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-3xl md:text-4xl font-bold mb-6 mt-10 leading-heading text-white">
+            <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-heading text-white">
               Innovators Hub
             </h1>
             <p className="text-xl max-w-3xl mx-auto leading-body opacity-90 text-white">
