@@ -1,163 +1,247 @@
 import React, { useState } from "react";
-import { Calendar, Search, ArrowRight, Clock, MapPin } from "lucide-react";
+import { Calendar, ArrowRight, Clock, MapPin, Globe } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import spaceweek from "../assets/spaceweek.jpg";
 
 const News: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
-  const categories = [
-    { id: "all", name: "All News" },
-    { id: "research", name: "Research" },
-    { id: "innovation", name: "Innovation" },
-    { id: "science", name: "Science" },
-    { id: "technology", name: "Technology" },
-    { id: "biosafety", name: "Biosafety" },
-    { id: "events", name: "Events" },
-  ];
-
-  const newsArticles = [
+  // Strategic Policy & Governance Initiatives
+  const strategicInitiatives = [
     {
       id: 1,
-      title:
-        "BOOSTUP 2025 Innovation Challenge Launches with Record Prize Pool",
-      excerpt:
-        "Namibia's premier innovation competition opens applications with N$500,000 in prizes, targeting breakthrough solutions in technology, agriculture, health, and environment.",
-      category: "innovation",
-      date: "January 20, 2025",
-      readTime: "3 min read",
-      image:
-        "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
+      title: "Namibia Sustainable Bioeconomy Strategy (2024-2029) Launched",
+      excerpt: "Landmark five-year strategy positioning Namibia as the second African country to adopt comprehensive bioeconomy policy, driving economic growth through renewable biological resources.",
+      category: "strategic",
+      date: "June 6, 2024",
+      readTime: "5 min read",
+      image: "https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg?auto=compress&cs=tinysrgb&w=800",
       featured: true,
+      details: "Developed in collaboration with FAO and multisectoral working group, focusing on agriculture, health, and natural resources sectors.",
+      url: "https://www.fao.org/namibia/news/detail/FAO-and-NCRST-launch-Namibia's-first-Bioeconomy-Strategy/en"
     },
     {
       id: 2,
-      title:
-        "National Science Fair 2025 Registration Extended Due to High Demand",
-      excerpt:
-        "Over 200 schools have already registered for this year's National Science Fair. Registration deadline extended to February 15th to accommodate additional participants.",
-      category: "science",
-      date: "January 18, 2025",
-      readTime: "2 min read",
-      image:
-        "https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=800",
+      title: "National Artificial Intelligence (AI) Strategy Development Initiated",
+      excerpt: "Proactive policy development to guide ethical and strategic use of AI for national development, preparing Namibia for the Fourth Industrial Revolution.",
+      category: "strategic",
+      date: "July 2024",
+      readTime: "4 min read",
+      image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800",
+      featured: false,
+      details: "Led in collaboration with Ministry of Education, Innovation, Youth, Sports, Arts and Culture.",
+      url: "https://www.youtube.com/watch?v=Ok3705EXnoQ"
     },
     {
       id: 3,
-      title:
-        "NCRST Partners with International Universities for AI Research Initiative",
-      excerpt:
-        "New collaboration with leading global institutions will establish AI research centers across Namibia, focusing on applications in agriculture and healthcare.",
-      category: "technology",
-      date: "January 15, 2025",
-      readTime: "4 min read",
-      image:
-        "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800",
-    },
+      title: "NRSTIF Technical Committee Established",
+      excerpt: "New committee to oversee development of national research and innovation infrastructure, strengthening the physical backbone of Namibia's innovation ecosystem.",
+      category: "strategic",
+      date: "August 2024",
+      readTime: "3 min read",
+      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
+      featured: false,
+      details: "Technical Committee on National Research, Science, Technology, and Innovation Facilities (NRSTIF-TC).",
+      url: "https://www.ncrst.na/2025/08/14/terms-of-reference-for-the-technical-committee-on-the-national-research-science-technology-and-innovation-facilities-nrstif-tc/"
+    }
+  ];
+
+  // Research & Data Collection Initiatives
+  const researchInitiatives = [
     {
       id: 4,
-      title:
-        "Breakthrough in Drought-Resistant Crop Research Approved for Field Trials",
-      excerpt:
-        "National Biosafety Committee approves field trials for genetically modified maize varieties designed to withstand Namibia's challenging climate conditions.",
-      category: "biosafety",
-      date: "January 12, 2025",
-      readTime: "5 min read",
-      image:
-        "https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg?auto=compress&cs=tinysrgb&w=800",
+      title: "National Business Innovation Survey Launched",
+      excerpt: "Comprehensive data collection initiative to measure innovation and R&D activities across Namibia, providing baseline data for evidence-based policymaking.",
+      category: "research",
+      date: "September 2024",
+      readTime: "4 min read",
+      image: "https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=800",
+      featured: false,
+      details: "Designed to measure innovation output and various aspects of innovation activities performed by business enterprises.",
+      url: "https://www.youtube.com/watch?v=bHcrzUdIyAM"
     },
     {
       id: 5,
-      title:
-        "Young Researcher Development Program Announces 2025 Grant Recipients",
-      excerpt:
-        "Fifteen early-career researchers receive funding totaling N$2.25 million to pursue innovative research projects across various scientific disciplines.",
+      title: "R&I Landscape Mapping & Benchmarking Exercise",
+      excerpt: "Systematic mapping of national research and innovation landscape to identify key actors, gaps, and opportunities for strengthening the innovation system.",
       category: "research",
-      date: "January 10, 2025",
-      readTime: "3 min read",
-      image:
-        "https://images.pexels.com/photos/3825581/pexels-photo-3825581.jpeg?auto=compress&cs=tinysrgb&w=800",
-    },
+      date: "October 2024",
+      readTime: "5 min read",
+      image: "https://images.pexels.com/photos/3825581/pexels-photo-3825581.jpeg?auto=compress&cs=tinysrgb&w=800",
+      featured: false,
+      details: "Includes benchmarking studies comparing Namibia's R&I policies with other countries.",
+      url: "https://www.ncrst.na/what-we-do/rsti-coordination-support/programme-policies/"
+    }
+  ];
+
+  // Capacity Building & Entrepreneurship
+  const capacityInitiatives = [
     {
       id: 6,
-      title: "Space Science Week 2025: Celebrating Namibia's Dark Sky Heritage",
-      excerpt:
-        "Annual celebration of space science returns with public stargazing events, school programs, and the launch of the NamibSat educational initiative.",
-      category: "science",
-      date: "January 8, 2025",
+      title: "Biosafety Act Administration & GMO Testing Laboratory",
+      excerpt: "Regulatory framework for genetically modified organisms with establishment of national testing laboratory to build local biotechnology capacity.",
+      category: "capacity",
+      date: "Ongoing",
       readTime: "4 min read",
-      image:
-        "https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&w=800",
+      featured: false,
+      details: "Laboratory established in 2018 to reduce reliance on imported bio-products and build local expertise.",
+      url: "https://www.ncrst.na/what-we-do/innovation-technology-development/biotechnology/administration-of-biosafety-act-2/"
     },
+    {
+      id: 7,
+      title: "National Innovation Challenge for Women (NICW) Programme",
+      excerpt: "Six-month capacity-building and business acceleration initiative empowering female entrepreneurs in agri-food, health, and ICT sectors.",
+      category: "capacity",
+      date: "Annual Program",
+      readTime: "3 min read",
+      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
+      featured: false,
+      details: "Addresses gender inclusivity and employment creation priorities from NDP-5.",
+      url: "https://www.ncrst.na/wp-content/uploads/2024/02/IIR-Booklet.pdf"
+    },
+    {
+      id: 8,
+      title: "BOOST-UP Programme Regional Collaboration",
+      excerpt: "Multi-country startup support series fostering regional collaboration and helping tech startups become investment-ready across Southern Africa.",
+      category: "capacity",
+      date: "Ongoing",
+      readTime: "4 min read",
+      image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800",
+      featured: false,
+      details: "NCRST serves as SAIC focal point for Namibia, coordinating coaching and pitch competitions.",
+      url: "https://neweralive.na/boost-up-equips-youth-with-skills-2/"
+    }
   ];
 
+  // Public Engagement & Human Capital Development
+  const engagementInitiatives = [
+    {
+      id: 9,
+      title: "Namibian Mathematics Olympiad (NMO)",
+      excerpt: "Annual competition promoting mathematics and popularizing science among high school students, building future talent pipeline for scientific workforce.",
+      category: "engagement",
+      date: "Annual Event",
+      readTime: "3 min read",
+      image: "https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=800",
+      featured: false,
+      details: "Collaboration with UNAM, NUST, and Ministry of Education to nurture mathematically gifted students.",
+      url: "https://nmo.ncrst.na/"
+    },
+    {
+      id: 10,
+      title: "National Science Fair",
+      excerpt: "Yearly event encouraging students to conduct and present independent scientific inquiries, fostering broader culture of scientific curiosity.",
+      category: "engagement",
+      date: "Annual Event",
+      readTime: "3 min read",
+      image: "https://images.pexels.com/photos/3825581/pexels-photo-3825581.jpeg?auto=compress&cs=tinysrgb&w=800",
+      featured: false,
+      details: "Organized in collaboration with Ministry of Education, Arts and Culture.",
+      url: "https://www.ncrst.na/national-science-fair-system/"
+    }
+  ];
+
+  // Strategic Partnerships
+  const strategicPartnerships = [
+    {
+      title: "FAO Partnership - Bioeconomy Strategy",
+      description: "Financial and technical assistance for developing and launching the national bioeconomy strategy",
+      status: "Active",
+      impact: "Landmark strategy positioning Namibia as second African country with bioeconomy policy",
+      url: "https://www.fao.org/namibia/news/detail/FAO-and-NCRST-launch-Namibia's-first-Bioeconomy-Strategy/en"
+    },
+    {
+      title: "National Research Foundation (NRF) - South Africa",
+      description: "Five-year partnership addressing shared priorities in digital health, energy, and space science",
+      status: "Active",
+      impact: "International collaboration through exchanges and joint research",
+      url: "https://nbcnews.na/node/111196"
+    },
+    {
+      title: "Southern Africa Innovation Collective (SAIC)",
+      description: "Regional collaboration supporting early-stage tech startups across five Southern African countries",
+      status: "Active",
+      impact: "NCRST serves as Namibia focal point, fostering regional innovation linkages",
+      url: "https://neweralive.na/boost-up-equips-youth-with-skills-2/"
+    },
+    {
+      title: "Namibia Standards Institution (NSI)",
+      description: "MOU to build capacity for innovators on standards and identify joint research projects",
+      status: "Active",
+      impact: "Strategic partnership agreement for standards development",
+      url: "https://www.ncrst.na/wp-content/uploads/2024/02/NCRST-Integrated_Strategic_Business_Plan-2021-26.pdf"
+    }
+  ];
+
+  // Upcoming Events
   const upcomingEvents = [
     {
-      title: "Research Symposium 2025",
-      date: "May 15-17, 2025",
-      location: "Safari Hotel & Convention Centre, Windhoek",
-      type: "Conference",
-      description:
-        "Annual gathering of researchers showcasing innovation for sustainable development",
+      title: "National AI Strategy Technical Advisory Committee Meeting",
+      date: "September 15, 2024",
+      location: "NCRST Headquarters, Windhoek",
+      type: "Policy Development",
+      description: "First meeting of technical advisory committees to develop governance framework for AI in Namibia"
     },
     {
-      title: "National Science Fair",
-      date: "April 15-18, 2025",
-      location: "Windhoek Showgrounds",
+      title: "BOOST-UP Regional Startup Competition",
+      date: "October 20-22, 2024",
+      location: "Southern Africa Innovation Hub",
       type: "Competition",
-      description:
-        "Student science competition featuring projects from schools nationwide",
+      description: "Regional pitch competition for tech startups from five Southern African countries"
     },
     {
-      title: "AI Workshop Series",
-      date: "March 5-7, 2025",
-      location: "NCRST Campus, Windhoek",
-      type: "Workshop",
-      description:
-        "Hands-on training in artificial intelligence applications for local industries",
+      title: "National Science Fair 2024",
+      date: "November 15-18, 2024",
+      location: "Windhoek Showgrounds",
+      type: "Science Education",
+      description: "Annual student science competition showcasing independent scientific inquiries"
     },
     {
-      title: "Biosafety Committee Public Hearing",
-      date: "February 20, 2025",
-      location: "NCRST Auditorium",
-      type: "Public Hearing",
-      description:
-        "Public consultation on proposed GMO field trial applications",
+      title: "Namibian Mathematics Olympiad Finals",
+      date: "December 5, 2024",
+      location: "University of Namibia",
+      type: "Academic Competition",
+      description: "Final round of national mathematics competition for high school students"
+    }
+  ];
+
+  // Media Coverage (keeping your original items)
+  const mediaCoverage = [
+    {
+      title: "NCRST launches research project on water and sanitation in Namibia",
+      date: "08 June 2025",
+      url: "https://nbcnews.na/node/111292",
+      source: "NBC News",
+      type: "News Article",
+    },
+    {
+      title: "NCRST advances Metascience for better policy",
+      date: "01 July 2025",
+      url: "https://www.youtube.com/watch?v=ZByH9Ni2VJ8",
+      source: "YouTube",
+      type: "Video",
+    },
+    {
+      title: "AI for securing water futures in Namibia",
+      date: "08 July 2025",
+      url: "https://www.youtube.com/watch?v=mBqRytp5Rn4",
+      source: "YouTube",
+      type: "Video",
+    },
+    {
+      title: "Funding diversification amid declining Support",
+      date: "13 August 2025",
+      url: "https://www.youtube.com/watch?v=OLAiqIFsi9s",
+      source: "YouTube",
+      type: "Video",
     },
   ];
 
-  const pressReleases = [
-    {
-      title: "NCRST Annual Report 2024 Released",
-      date: "January 25, 2025",
-      summary:
-        "Comprehensive overview of achievements in research funding, innovation support, and scientific advancement",
-    },
-    {
-      title: "New Partnership with European Space Agency Announced",
-      date: "January 22, 2025",
-      summary:
-        "Collaboration will enhance Namibia's space science capabilities and satellite technology development",
-    },
-    {
-      title: "Record Investment in Research Infrastructure",
-      date: "January 20, 2025",
-      summary:
-        "N$15 million allocated for upgrading laboratory facilities and acquiring advanced research equipment",
-    },
-  ];
-
-  const filteredNews = newsArticles.filter((article) => {
-    const matchesCategory =
-      selectedCategory === "all" || article.category === selectedCategory;
-    const matchesSearch =
-      article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      article.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
-
-  const featuredArticle = newsArticles.find((article) => article.featured);
-  const regularArticles = filteredNews.filter((article) => !article.featured);
+  // Combine all initiatives for display
+  const allInitiatives = [...strategicInitiatives, ...researchInitiatives, ...capacityInitiatives, ...engagementInitiatives];
+  const featuredInitiative = strategicInitiatives.find((initiative) => initiative.featured);
+  const regularInitiatives = allInitiatives.filter((initiative) => !initiative.featured);
 
   return (
     <div>
@@ -175,96 +259,65 @@ const News: React.FC = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-heading text-white">
-              News & Events
+              NCRST Initiatives & Events
             </h1>
             <p className="text-xl max-w-3xl mx-auto leading-body opacity-90 text-white">
-              Stay informed about the latest developments in Namibian research,
-              science, technology, and innovation.
+              Comprehensive overview of NCRST's strategic initiatives, research programs, capacity building efforts, and public engagement activities driving Namibia's knowledge-based society transformation.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Search and Filter */}
-      <section className="py-8 bg-ncrst-grey-light">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <div className="flex flex-col md:flex-row gap-4">
-              {/* Search */}
-              <div className="flex-1">
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search news and events..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ncrst-blue focus:border-transparent"
-                  />
-                  <Search className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
-                </div>
-              </div>
-
-              {/* Category Filter */}
-              <div className="md:w-64">
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full py-3 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ncrst-blue focus:border-transparent"
-                >
-                  {categories.map((category) => (
-                    <option key={category.id} value={category.id}>
-                      {category.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Article */}
-      {featuredArticle && (
+      {/* Featured Initiative */}
+      {featuredInitiative && (
         <section className="py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-white rounded-xl shadow-lg overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 <div className="relative h-64 lg:h-auto">
                   <img
-                    src={featuredArticle.image}
-                    alt={featuredArticle.title}
+                    src={featuredInitiative.image}
+                    alt={featuredInitiative.title}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-4 left-4">
                     <span className="bg-ncrst-gold text-ncrst-grey px-3 py-1 rounded-full text-sm font-medium">
-                      Featured
+                      Featured Initiative
                     </span>
                   </div>
                 </div>
                 <div className="p-8">
                   <div className="flex items-center space-x-4 mb-4">
                     <span className="bg-ncrst-blue/10 text-ncrst-blue px-3 py-1 rounded-full text-sm font-medium capitalize">
-                      {featuredArticle.category}
+                      {featuredInitiative.category}
                     </span>
                     <div className="flex items-center text-sm text-ncrst-grey-dark">
                       <Calendar size={14} className="mr-1" />
-                      {featuredArticle.date}
+                      {featuredInitiative.date}
                     </div>
                     <div className="flex items-center text-sm text-ncrst-grey-dark">
                       <Clock size={14} className="mr-1" />
-                      {featuredArticle.readTime}
+                      {featuredInitiative.readTime}
                     </div>
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold text-ncrst-grey mb-4 leading-heading">
-                    {featuredArticle.title}
+                    {featuredInitiative.title}
                   </h2>
-                  <p className="text-ncrst-grey-dark mb-6 leading-body">
-                    {featuredArticle.excerpt}
+                  <p className="text-ncrst-grey-dark mb-4 leading-body">
+                    {featuredInitiative.excerpt}
                   </p>
-                  <button className="inline-flex items-center space-x-2 bg-ncrst-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-ncrst-blue/90 transition-colors">
-                    <span>Read Full Article</span>
+                  <p className="text-sm text-ncrst-grey-dark mb-6 italic">
+                    {featuredInitiative.details}
+                  </p>
+                  <a
+                    href={featuredInitiative.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-ncrst-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-ncrst-blue/90 transition-colors"
+                  >
+                    <span>Learn More</span>
                     <ArrowRight size={16} />
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -272,33 +325,87 @@ const News: React.FC = () => {
         </section>
       )}
 
-      {/* News Grid */}
-      <section className="py-12" id="news">
+      {/* Strategic Partnerships */}
+      <section className="py-16 bg-ncrst-grey-light">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-ncrst-grey mb-4 leading-heading">
+              Strategic Partnerships
+            </h2>
+            <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
+              Key collaborations driving NCRST's mission through international cooperation and regional innovation networks.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {strategicPartnerships.map((partnership, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <span className="bg-ncrst-green/10 text-ncrst-green px-3 py-1 rounded-full text-sm font-medium">
+                    {partnership.status}
+                  </span>
+                  <Globe className="text-ncrst-blue" size={20} />
+                </div>
+                
+                <h3 className="text-lg font-bold text-ncrst-grey mb-3 leading-heading">
+                  {partnership.title}
+                </h3>
+                
+                <p className="text-ncrst-grey-dark text-sm mb-4 leading-body">
+                  {partnership.description}
+                </p>
+                
+                <div className="bg-ncrst-grey-light rounded-lg p-3 mb-4">
+                  <p className="text-xs text-ncrst-grey-dark">
+                    <strong>Impact:</strong> {partnership.impact}
+                  </p>
+                </div>
+
+                <a
+                  href={partnership.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 text-ncrst-blue hover:text-ncrst-green transition-colors font-medium"
+                >
+                  <span>Learn More</span>
+                  <ArrowRight size={16} />
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* All Initiatives Grid */}
+      <section className="py-12" id="initiatives">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold text-ncrst-grey leading-heading">
-              Latest News
+              NCRST Initiatives
             </h2>
             <div className="text-sm text-ncrst-grey-dark">
-              Showing {regularArticles.length} articles
+              Showing {regularInitiatives.length} initiatives
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {regularArticles.map((article) => (
+            {regularInitiatives.map((initiative) => (
               <article
-                key={article.id}
+                key={initiative.id}
                 className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
                 <div className="relative h-48">
                   <img
-                    src={article.image}
-                    alt={article.title}
+                    src={initiative.image}
+                    alt={initiative.title}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-4 left-4">
                     <span className="bg-ncrst-blue/10 backdrop-blur-sm text-ncrst-blue px-3 py-1 rounded-full text-sm font-medium capitalize">
-                      {article.category}
+                      {initiative.category}
                     </span>
                   </div>
                 </div>
@@ -306,41 +413,32 @@ const News: React.FC = () => {
                   <div className="flex items-center space-x-4 mb-3 text-sm text-ncrst-grey-dark">
                     <div className="flex items-center">
                       <Calendar size={14} className="mr-1" />
-                      {article.date}
+                      {initiative.date}
                     </div>
                     <div className="flex items-center">
                       <Clock size={14} className="mr-1" />
-                      {article.readTime}
+                      {initiative.readTime}
                     </div>
                   </div>
                   <h3 className="text-lg font-bold text-ncrst-grey mb-3 leading-heading">
-                    {article.title}
+                    {initiative.title}
                   </h3>
                   <p className="text-ncrst-grey-dark text-sm mb-4 leading-body">
-                    {article.excerpt}
+                    {initiative.excerpt}
                   </p>
-                  <button className="text-ncrst-blue hover:text-ncrst-green transition-colors font-medium text-sm inline-flex items-center space-x-1">
-                    <span>Read More</span>
+                  <a
+                    href={initiative.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-ncrst-blue hover:text-ncrst-green transition-colors font-medium text-sm inline-flex items-center space-x-1"
+                  >
+                    <span>Learn More</span>
                     <ArrowRight size={14} />
-                  </button>
+                  </a>
                 </div>
               </article>
             ))}
           </div>
-
-          {regularArticles.length === 0 && (
-            <div className="text-center py-12">
-              <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Search className="text-gray-400" size={24} />
-              </div>
-              <h3 className="text-lg font-semibold text-ncrst-grey mb-2">
-                No articles found
-              </h3>
-              <p className="text-ncrst-grey-dark">
-                Try adjusting your search or filter criteria
-              </p>
-            </div>
-          )}
         </div>
       </section>
 
@@ -388,7 +486,10 @@ const News: React.FC = () => {
                   </div>
                 </div>
 
-                <button className="w-full mt-6 bg-ncrst-blue text-white py-2 rounded-lg font-medium hover:bg-ncrst-blue/90 transition-colors">
+                <button 
+                  onClick={() => navigate('/contact')}
+                  className="w-full mt-6 bg-ncrst-blue text-white py-2 rounded-lg font-medium hover:bg-ncrst-blue/90 transition-colors"
+                >
                   Learn More
                 </button>
               </div>
@@ -397,72 +498,53 @@ const News: React.FC = () => {
         </div>
       </section>
 
-      {/* Press Releases */}
-      <section className="py-16" id="media">
+      {/* Media Coverage */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2">
-              <h2 className="text-3xl font-bold text-ncrst-grey mb-8 leading-heading">
-                Recent Press Releases
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-ncrst-grey mb-4 leading-heading">
+              Media Coverage
               </h2>
-              <div className="space-y-6">
-                {pressReleases.map((release, index) => (
+            <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
+              Recent news articles and media coverage featuring NCRST initiatives and research projects.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {mediaCoverage.map((item, index) => (
                   <div
                     key={index}
-                    className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-ncrst-blue transition-colors"
-                  >
-                    <div className="flex items-center space-x-2 mb-3">
-                      <Calendar size={16} className="text-ncrst-blue" />
+                className="bg-ncrst-grey-light rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <span className="bg-ncrst-gold/10 text-ncrst-gold px-3 py-1 rounded-full text-sm font-medium">
+                    {item.type}
+                  </span>
                       <span className="text-sm text-ncrst-grey-dark">
-                        {release.date}
+                    {item.source}
                       </span>
                     </div>
+                
                     <h3 className="text-lg font-bold text-ncrst-grey mb-3 leading-heading">
-                      {release.title}
+                  {item.title}
                     </h3>
-                    <p className="text-ncrst-grey-dark text-sm leading-body">
-                      {release.summary}
-                    </p>
+                
+                <div className="flex items-center space-x-2 mb-4 text-sm text-ncrst-grey-dark">
+                  <Calendar size={16} className="text-ncrst-blue" />
+                  <span>{item.date}</span>
+                </div>
+                
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 text-ncrst-blue hover:text-ncrst-green transition-colors font-medium"
+                >
+                  <span>View {item.type}</span>
+                  <ArrowRight size={16} />
+                </a>
                   </div>
                 ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold text-ncrst-grey mb-6 leading-heading">
-                Media Resources
-              </h3>
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold text-ncrst-grey mb-2">
-                      Media Contacts
-                    </h4>
-                    <div className="text-sm text-ncrst-grey-dark space-y-1">
-                      <p>Communications Office</p>
-                      <p>Phone: +264 61 431 7000</p>
-                      <p>Email: media@ncrst.na</p>
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-ncrst-grey mb-2">
-                      Press Kit
-                    </h4>
-                    <button className="text-ncrst-blue hover:text-ncrst-green transition-colors text-sm font-medium">
-                      Download Media Kit →
-                    </button>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-ncrst-grey mb-2">
-                      Photo Gallery
-                    </h4>
-                    <button className="text-ncrst-blue hover:text-ncrst-green transition-colors text-sm font-medium">
-                      View Gallery →
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>

@@ -6,6 +6,7 @@ import {
   Download,
   Users,
   BarChart,
+  ArrowRight,
 } from "lucide-react";
 import pexel2 from "../assets/scientist-works-with-microscope-laboratory-conducting-experiments-formulas.jpg";
 
@@ -14,35 +15,61 @@ const Research: React.FC = () => {
 
   const openCalls = [
     {
-      title: "Young Researcher Development Grant",
-      deadline: "March 15, 2025",
-      amount: "Up to N$150,000",
-      category: "Career Development",
-      status: "Open",
+      title: "Enhancing energy security and waste management in the informal settlements of Namibia",
+      deadline: "Ongoing",
+      amount: "N$890,878.00",
+      category: "Renewable Energy",
+      status: "Active",
     },
     {
-      title: "Innovation in Agriculture Research",
-      deadline: "February 28, 2025",
-      amount: "Up to N$500,000",
+      title: "Space Science and Technology for disaster risk management and governance",
+      deadline: "Ongoing",
+      amount: "N$890,878.00",
+      category: "Space Science",
+      status: "Active",
+    },
+    {
+      title: "Artificial intelligence for Healthcare: Early detection, diagnosis, and treatment of chronic diseases in Namibia",
+      deadline: "Ongoing",
+      amount: "N$890,878.00",
+      category: "AI in Healthcare",
+      status: "Active",
+    },
+    {
+      title: "Climate-Smart Agriculture Technologies",
+      deadline: "Ongoing",
+      amount: "N$890,878.00",
       category: "Agriculture",
-      status: "Open",
+      status: "Active",
     },
     {
-      title: "Health Sciences Research Initiative",
-      deadline: "April 30, 2025",
-      amount: "Up to N$300,000",
-      category: "Health",
-      status: "Open",
+      title: "Development of a National Psychometric Instrument",
+      deadline: "Ongoing",
+      amount: "N$918,505.00",
+      category: "Social Sciences",
+      status: "Active",
+    },
+    {
+      title: "Development of Digital Solutions in Horticulture value chains",
+      deadline: "Ongoing",
+      amount: "N$1,231,761.50",
+      category: "AI in Horticulture",
+      status: "Active",
+    },
+    {
+      title: "Improving water security and sanitation",
+      deadline: "Ongoing",
+      amount: "N$1,104,405.00",
+      category: "Water Security",
+      status: "Active",
     },
   ];
 
   const researchPriorities = [
-    "Sustainable Agriculture and Food Security",
-    "Health and Medical Sciences",
-    "Renewable Energy and Environment",
-    "Mining and Mineral Processing",
-    "Information and Communication Technology",
-    "Social Sciences and Human Development",
+    "Space Science",
+    "Artificial Intelligence",
+    "Indigenous Knowledge Systems (IKS)",
+    "Energy & Green Technologies",
   ];
 
   const permits = [
@@ -70,11 +97,68 @@ const Research: React.FC = () => {
   ];
 
   const stats = [
-    { label: "Active Research Projects", value: "245", icon: FileText },
-    { label: "Grants Awarded (2024)", value: "N$12.5M", icon: Award },
+    { label: "Active Research Projects", value: "7", icon: FileText },
+    { label: "Grants Awarded (2024)", value: "N$7,534,061.50", icon: Award },
     { label: "Registered Researchers", value: "1,342", icon: Users },
     { label: "Research Institutes", value: "156", icon: BarChart },
   ];
+
+  const nsrdInfrastructure = [
+    {
+      title: "National RSTII Infrastructure Development",
+      description: "Strategic initiative to establish a robust research infrastructure landscape in Namibia through comprehensive audits, assessments, and surveys of existing research facilities.",
+      objective: "Craft a National Strategy for Science, Technology, and Innovation Infrastructure (NSTII) as a guiding framework for long-term development.",
+      link: "https://forms.office.com/r/zV2VQcbmts",
+      icon: "🏗️",
+    },
+    {
+      title: "National STI Infrastructure (NSTII) Strategy",
+      description: "Strategic framework to fast-track and complement the NPRSTI in realizing the national research agenda by enhancing equitable access to national research infrastructure.",
+      objective: "Enable strategic planning to address infrastructure needs and support the advancement of research and innovation in Namibia.",
+      status: "In Development",
+      icon: "📋",
+    },
+  ];
+
+  const nationalFacilities = [
+    {
+      title: "National Research, Science, Technology, and Innovation Valley (NRSTI Valley)",
+      description: "Comprehensive STI facility complex serving as critical infrastructure supporting scientific research and innovation across diverse disciplines.",
+      status: "In Development",
+      icon: "🏛️",
+    },
+    {
+      title: "National Genetically Modified Organism Testing, Training, and Research Laboratory (NGMOC)",
+      description: "Specialized facility for GMO testing, training, and research activities.",
+      status: "Planned",
+      icon: "🧬",
+    },
+    {
+      title: "National Innovation Hub (NIH)",
+      description: "Central hub for innovation activities, startup support, and technology commercialization.",
+      status: "Planned",
+      icon: "💡",
+    },
+    {
+      title: "National Centre for Space Science and Technology (NSSTC)",
+      description: "Dedicated facility for space science research, satellite operations, and space technology development.",
+      status: "Planned",
+      icon: "🚀",
+    },
+    {
+      title: "National Science and Demonstration Centers (NSDC)",
+      description: "Network of centers for science education, public engagement, and demonstration of scientific concepts.",
+      status: "Planned",
+      icon: "🔬",
+    },
+  ];
+
+  const technicalCommittee = {
+    name: "National Research Facilities Technical Committee (NRFTC)",
+    purpose: "Provide technical guidance during the formulation and implementation phases of the NSTII Strategy.",
+    role: "Steer the comprehensive development and execution of NPRSTI initiatives while facilitating the establishment and maintenance of National Research Facilities (NRFs).",
+    status: "Establishment in Progress",
+  };
 
   return (
     <div>
@@ -135,7 +219,9 @@ const Research: React.FC = () => {
           <div className="flex flex-wrap gap-4 justify-center">
             {[
               { id: "grants", label: "Research Grants" },
-              { id: "calls", label: "Open Calls" },
+              { id: "natural-sciences", label: "Natural Sciences Research" },
+              { id: "calls", label: "Active Research Calls" },
+              { id: "open-calls", label: "Open Calls" },
               { id: "permits", label: "Research Permits" },
               { id: "registration", label: "Research Institute Registration" },
               { id: "symposium", label: "Research Symposium" },
@@ -305,21 +391,278 @@ const Research: React.FC = () => {
                 ))}
               </div>
             </div>
+
+            {/* Grant Management Processes */}
+            <div className="bg-white rounded-xl shadow-lg p-8 mt-8">
+              <h3 className="text-2xl font-bold text-ncrst-grey mb-6 leading-heading">
+                Grant Management Processes
+              </h3>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Pre-Award */}
+                <div className="bg-ncrst-blue text-white rounded-xl p-6">
+                  <h4 className="text-xl font-bold mb-4 leading-heading">
+                    Pre-Award
+                  </h4>
+                  <p className="text-sm opacity-90 mb-4">
+                    Grant Acquisition & Planning
+                  </p>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Identifying funding opportunities</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Developing and submitting proposals</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Reviewing eligibility and compliance</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Negotiating terms and conditions</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Award */}
+                <div className="bg-ncrst-grey text-white rounded-xl p-6">
+                  <h4 className="text-xl font-bold mb-4 leading-heading">
+                    Award
+                  </h4>
+                  <p className="text-sm opacity-90 mb-4">
+                    Implementation & Monitoring
+                  </p>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Signing grant agreements</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Setting up financial and programmatic systems</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Disbursing funds according to approved budgets</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Monitoring activities and ensuring compliance</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Post-Award */}
+                <div className="bg-ncrst-green text-white rounded-xl p-6">
+                  <h4 className="text-xl font-bold mb-4 leading-heading">
+                    Post-Award
+                  </h4>
+                  <p className="text-sm opacity-90 mb-4">
+                    Reporting, Evaluation & Closeout
+                  </p>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Preparing financial and technical reports</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Conducting monitoring & evaluation</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Addressing audits or donor reviews</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Closing the grant and archiving records</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       )}
 
-      {/* Open Calls */}
+      {/* Natural Sciences Research */}
+      {activeTab === "natural-sciences" && (
+        <section id="natural-sciences" className="py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* NSRD Overview */}
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-ncrst-grey mb-4 leading-heading">
+                Natural Sciences Research Division (NSRD)
+              </h2>
+              <p className="text-lg text-ncrst-grey-dark max-w-4xl mx-auto leading-body">
+                The Division is responsible for coordinating natural sciences related research and emerging technologies in line with Namibia's national development priorities, with the goal of contributing to the achievement of the objectives in Namibia's Vision 2030, National Development Plans, and other regional and international development frameworks.
+              </p>
+            </div>
+
+            {/* Division Mandate */}
+            <div className="bg-ncrst-blue text-white rounded-xl p-8 mb-12">
+              <h3 className="text-2xl font-bold mb-4 leading-heading">
+                Division Mandate
+              </h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-xl font-semibold mb-3">Primary Responsibilities</h4>
+                  <ul className="space-y-2 text-sm opacity-90">
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Coordinate natural sciences research and emerging technologies</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Facilitate development and management of national research facilities</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Support implementation of the National Programme on Research, Science, Technology, and Innovation (NPRSTI)</span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-xl font-semibold mb-3">Partnership Coordination</h4>
+                  <ul className="space-y-2 text-sm opacity-90">
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Manage agreements with Offices, Ministries, Agencies (O/M/A/s)</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Coordinate with Higher Education Institutions (HEIs)</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <div className="w-2 h-2 bg-ncrst-gold rounded-full mt-2 flex-shrink-0"></div>
+                      <span>Foster international partnerships and collaborations</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Infrastructure Development */}
+            <div className="mb-12">
+              <h3 className="text-2xl font-bold text-ncrst-grey mb-6 leading-heading">
+                Research Infrastructure Development
+              </h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {nsrdInfrastructure.map((item, index) => (
+                  <div key={index} className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-ncrst-grey hover:shadow-lg transition-all">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <span className="text-3xl">{item.icon}</span>
+                      <div>
+                        <h4 className="text-lg font-bold text-ncrst-grey leading-heading">
+                          {item.title}
+                        </h4>
+                        {item.status && (
+                          <span className="bg-ncrst-gold/20 text-ncrst-gold px-2 py-1 rounded-full text-xs font-medium">
+                            {item.status}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <p className="text-ncrst-grey-dark text-sm leading-body mb-3">
+                      {item.description}
+                    </p>
+                    <p className="text-ncrst-blue text-sm font-medium mb-4">
+                      <strong>Objective:</strong> {item.objective}
+                    </p>
+                    {item.link && (
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center space-x-2 text-ncrst-blue hover:text-ncrst-gold transition-colors font-medium"
+                      >
+                        <span>Participate in Infrastructure Survey</span>
+                        <ArrowRight size={16} />
+                      </a>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* National Research Facilities */}
+            <div className="mb-12">
+              <h3 className="text-2xl font-bold text-ncrst-grey mb-6 leading-heading">
+                National Research Facilities (NRFs)
+              </h3>
+              <p className="text-lg text-ncrst-grey-dark max-w-4xl mx-auto leading-body mb-8 text-center">
+                Physical infrastructure and resources that support research, development, and innovation in Science, Technology, and Innovation (STI) in Namibia. These facilities are essential for researchers and innovators to pursue research, develop new technologies, and innovate across various fields.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {nationalFacilities.map((facility, index) => (
+                  <div key={index} className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-ncrst-grey hover:shadow-lg transition-all">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <span className="text-2xl">{facility.icon}</span>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        facility.status === 'In Development' 
+                          ? 'bg-ncrst-blue/20 text-ncrst-blue' 
+                          : 'bg-ncrst-grey/20 text-ncrst-grey'
+                      }`}>
+                        {facility.status}
+                      </span>
+                    </div>
+                    <h4 className="text-lg font-bold text-ncrst-grey mb-3 leading-heading">
+                      {facility.title}
+                    </h4>
+                    <p className="text-ncrst-grey-dark text-sm leading-body">
+                      {facility.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Technical Committee */}
+            <div className="bg-ncrst-grey-light rounded-xl p-8">
+              <h3 className="text-2xl font-bold text-ncrst-grey mb-6 leading-heading">
+                National Research Facilities Technical Committee (NRFTC)
+              </h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-xl font-semibold text-ncrst-grey mb-3">Purpose</h4>
+                  <p className="text-ncrst-grey-dark leading-body mb-4">
+                    {technicalCommittee.purpose}
+                  </p>
+                  <h4 className="text-xl font-semibold text-ncrst-grey mb-3">Role</h4>
+                  <p className="text-ncrst-grey-dark leading-body">
+                    {technicalCommittee.role}
+                  </p>
+                </div>
+                <div className="bg-white rounded-lg p-6">
+                  <h4 className="text-lg font-semibold text-ncrst-grey mb-3">Current Status</h4>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-3 h-3 bg-ncrst-gold rounded-full animate-pulse"></div>
+                    <span className="text-ncrst-grey-dark font-medium">
+                      {technicalCommittee.status}
+                    </span>
+                  </div>
+                  <p className="text-sm text-ncrst-grey-dark mt-3">
+                    The committee will play a pivotal role in steering the comprehensive development and execution of NPRSTI initiatives while facilitating the establishment and maintenance of National Research Facilities (NRFs).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Active Research Calls */}
       {activeTab === "calls" && (
         <section id="calls" className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-ncrst-grey mb-4 leading-heading">
-                Current Open Calls
+                Active Research Calls
               </h2>
               <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
-                Active funding opportunities with application deadlines and
-                requirements.
+                Current research funding opportunities across various thematic areas with ongoing application periods.
               </p>
             </div>
 
@@ -354,11 +697,44 @@ const Research: React.FC = () => {
                       </span>
                     </div>
                   </div>
-                  <button className="w-full bg-ncrst-blue text-white py-2 rounded-lg font-medium hover:bg-ncrst-gold/90 transition-colors">
-                    Apply Now
-                  </button>
+                  <div className="w-full bg-gray-100 text-gray-500 py-2 rounded-lg font-medium text-center">
+                    Active Project
+                  </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Open Calls */}
+      {activeTab === "open-calls" && (
+        <section id="open-calls" className="py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-ncrst-grey mb-4 leading-heading">
+                Open Calls for Applications
+              </h2>
+              <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
+                Current funding opportunities available for new applications.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-lg p-8 text-center">
+              <div className="max-w-md mx-auto">
+                <div className="text-6xl mb-4">📋</div>
+                <h3 className="text-xl font-bold text-ncrst-grey mb-4">
+                  No Current Open Calls
+                </h3>
+                <p className="text-ncrst-grey-dark mb-6">
+                  There are currently no open calls for applications. New funding opportunities will be posted here when they become available.
+                </p>
+                <div className="bg-ncrst-grey-light rounded-lg p-4">
+                  <p className="text-sm text-ncrst-grey-dark">
+                    <strong>Stay Updated:</strong> Check back regularly or contact us to be notified when new calls are announced.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>

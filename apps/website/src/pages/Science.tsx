@@ -8,6 +8,10 @@ import {
   Brain,
   Microscope,
   Target,
+  Globe,
+  FileText,
+  TrendingUp,
+  Shield,
 } from "lucide-react";
 import pexel3 from "../assets/girl-lab-coat-safety-glasses-writing-notepad.jpg";
 
@@ -126,6 +130,143 @@ const Science: React.FC = () => {
       category: "Space Science",
       description:
         "Annual celebration of space science with public stargazing events",
+    },
+  ];
+
+  const climateChangeActivities = [
+    {
+      title: "National Climate Change Focal Point",
+      description: "Serving as Namibia's designated focal point for climate change matters under the UNFCCC",
+      status: "Active",
+      responsibilities: [
+        "Coordinate national climate change responses",
+        "Facilitate international climate negotiations",
+        "Support climate policy development",
+        "Manage climate data and reporting",
+      ],
+      icon: "🌍",
+    },
+    {
+      title: "Greenhouse Gas Inventory Management",
+      description: "Comprehensive tracking and reporting of Namibia's greenhouse gas emissions",
+      status: "Ongoing",
+      responsibilities: [
+        "Annual GHG inventory compilation",
+        "Emission factor development",
+        "Data quality assurance",
+        "UNFCCC reporting compliance",
+      ],
+      icon: "📊",
+    },
+    {
+      title: "Climate Change Adaptation Planning",
+      description: "Supporting national adaptation strategies and resilience building",
+      status: "Active",
+      responsibilities: [
+        "National Adaptation Plan development",
+        "Vulnerability assessments",
+        "Adaptation project coordination",
+        "Capacity building initiatives",
+      ],
+      icon: "🛡️",
+    },
+    {
+      title: "Climate Finance Coordination",
+      description: "Facilitating access to international climate finance mechanisms",
+      status: "Active",
+      responsibilities: [
+        "Green Climate Fund coordination",
+        "Climate finance project development",
+        "Donor relationship management",
+        "Financial reporting oversight",
+      ],
+      icon: "💰",
+    },
+  ];
+
+  const environmentalReports = [
+    {
+      title: "Namibia's Third National Communication to UNFCCC",
+      description: "Comprehensive report on climate change mitigation and adaptation efforts",
+      year: "2023",
+      status: "Published",
+      keyFindings: [
+        "Updated greenhouse gas inventory",
+        "Climate change impacts assessment",
+        "Adaptation and mitigation measures",
+        "Financial and technical needs",
+      ],
+      downloadLink: "#",
+    },
+    {
+      title: "Biennial Update Report (BUR)",
+      description: "Regular reporting on climate change actions and support received",
+      year: "2024",
+      status: "In Progress",
+      keyFindings: [
+        "Mitigation actions and effects",
+        "Support received and needed",
+        "Domestic measurement and reporting",
+        "Progress towards NDC targets",
+      ],
+      downloadLink: "#",
+    },
+    {
+      title: "National Adaptation Plan (NAP)",
+      description: "Strategic framework for climate change adaptation in Namibia",
+      year: "2025",
+      status: "Development Phase",
+      keyFindings: [
+        "Climate vulnerability assessment",
+        "Adaptation priority sectors",
+        "Implementation strategies",
+        "Monitoring and evaluation framework",
+      ],
+      downloadLink: "#",
+    },
+    {
+      title: "Climate Change Policy Implementation Report",
+      description: "Annual progress report on climate change policy implementation",
+      year: "2024",
+      status: "Published",
+      keyFindings: [
+        "Policy implementation progress",
+        "Achievements and challenges",
+        "Stakeholder engagement",
+        "Future priorities",
+      ],
+      downloadLink: "#",
+    },
+  ];
+
+  const climateData = [
+    {
+      metric: "GHG Emissions (2020)",
+      value: "25.2 MtCO2e",
+      change: "-2.1%",
+      trend: "decreasing",
+      sector: "Total National Emissions",
+    },
+    {
+      metric: "Renewable Energy Share",
+      value: "34.2%",
+      change: "+5.8%",
+      trend: "increasing",
+      sector: "Energy Sector",
+    },
+    {
+      metric: "Forest Cover",
+      value: "8.2%",
+      change: "+0.3%",
+      trend: "increasing",
+      sector: "Land Use Change",
+    },
+    {
+      metric: "Climate Finance Mobilized",
+      value: "N$ 2.8B",
+      change: "+15.2%",
+      trend: "increasing",
+      sector: "International Support",
     },
   ];
 
@@ -793,6 +934,176 @@ const Science: React.FC = () => {
               <button className="bg-ncrst-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-ncrst-blue/90 transition-colors">
                 View All Events
               </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Climate Change & Environmental Reporting */}
+      <section id="climate" className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-ncrst-grey mb-4 leading-heading">
+              Climate Change & Environmental Reporting
+            </h2>
+            <p className="text-lg text-ncrst-grey-dark max-w-3xl mx-auto leading-body">
+              Leading Namibia's climate change response through scientific research, policy development, and international reporting.
+            </p>
+          </div>
+
+          {/* Climate Change Focal Point Activities */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-ncrst-grey mb-8 text-center leading-heading">
+              Climate Change Focal Point Activities
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {climateChangeActivities.map((activity, index) => (
+                <div key={index} className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-ncrst-green hover:shadow-lg transition-all">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="text-3xl">{activity.icon}</div>
+                    <div>
+                      <h4 className="text-lg font-bold text-ncrst-grey leading-heading">
+                        {activity.title}
+                      </h4>
+                      <p className="text-sm text-ncrst-grey-dark">{activity.description}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="mb-4">
+                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                      activity.status === 'Active' ? 'bg-green-100 text-green-800' : 
+                      activity.status === 'Ongoing' ? 'bg-blue-100 text-blue-800' : 
+                      'bg-yellow-100 text-yellow-800'
+                    }`}>
+                      {activity.status}
+                    </span>
+                  </div>
+                  
+                  <div>
+                    <h5 className="font-semibold text-ncrst-grey mb-3">Key Responsibilities:</h5>
+                    <ul className="space-y-2">
+                      {activity.responsibilities.map((responsibility, idx) => (
+                        <li key={idx} className="flex items-start space-x-2">
+                          <div className="w-1.5 h-1.5 bg-ncrst-green rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-sm text-ncrst-grey-dark">{responsibility}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Climate Data Dashboard */}
+          <div className="bg-gradient-to-r from-ncrst-green to-ncrst-blue text-white rounded-xl p-8 mb-16">
+            <h3 className="text-2xl font-bold mb-8 text-center leading-heading">
+              Climate Change Data Dashboard
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {climateData.map((data, index) => (
+                <div key={index} className="bg-white/10 p-6 rounded-lg text-center">
+                  <h4 className="font-semibold mb-2 text-sm">{data.metric}</h4>
+                  <div className="text-2xl font-bold mb-2">{data.value}</div>
+                  <div className={`text-sm ${
+                    data.trend === 'increasing' ? 'text-green-200' : 'text-red-200'
+                  }`}>
+                    {data.change} from previous year
+                  </div>
+                  <div className="text-xs opacity-75 mt-1">{data.sector}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Environmental Reports */}
+          <div>
+            <h3 className="text-2xl font-bold text-ncrst-grey mb-8 text-center leading-heading">
+              Environmental Reports & Publications
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {environmentalReports.map((report, index) => (
+                <div key={index} className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-ncrst-blue hover:shadow-lg transition-all">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-ncrst-grey leading-heading mb-2">
+                        {report.title}
+                      </h4>
+                      <p className="text-sm text-ncrst-grey-dark mb-3">{report.description}</p>
+                    </div>
+                    <div className="flex flex-col items-end space-y-2">
+                      <span className="text-xs bg-ncrst-grey-light text-ncrst-grey px-2 py-1 rounded">
+                        {report.year}
+                      </span>
+                      <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                        report.status === 'Published' ? 'bg-green-100 text-green-800' : 
+                        report.status === 'In Progress' ? 'bg-blue-100 text-blue-800' : 
+                        'bg-yellow-100 text-yellow-800'
+                      }`}>
+                        {report.status}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="mb-4">
+                    <h5 className="font-semibold text-ncrst-grey mb-3">Key Findings:</h5>
+                    <ul className="space-y-2">
+                      {report.keyFindings.map((finding, idx) => (
+                        <li key={idx} className="flex items-start space-x-2">
+                          <div className="w-1.5 h-1.5 bg-ncrst-blue rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-sm text-ncrst-grey-dark">{finding}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center space-x-2 text-ncrst-blue hover:text-ncrst-green transition-colors cursor-pointer">
+                      <FileText size={16} />
+                      <span className="text-sm font-medium">View Report</span>
+                    </div>
+                    <button className="bg-ncrst-blue text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-ncrst-blue/90 transition-colors">
+                      Download PDF
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* International Commitments */}
+          <div className="bg-ncrst-grey-light rounded-xl p-8 mt-16">
+            <h3 className="text-2xl font-bold text-ncrst-grey mb-6 text-center leading-heading">
+              International Climate Commitments
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="text-center">
+                <div className="bg-ncrst-green/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Globe className="text-ncrst-green" size={24} />
+                </div>
+                <h4 className="font-semibold text-ncrst-grey mb-2">UNFCCC</h4>
+                <p className="text-sm text-ncrst-grey-dark">
+                  United Nations Framework Convention on Climate Change focal point
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="bg-ncrst-blue/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="text-ncrst-blue" size={24} />
+                </div>
+                <h4 className="font-semibold text-ncrst-grey mb-2">NDC Implementation</h4>
+                <p className="text-sm text-ncrst-grey-dark">
+                  Nationally Determined Contributions under the Paris Agreement
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="bg-ncrst-gold/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="text-ncrst-gold" size={24} />
+                </div>
+                <h4 className="font-semibold text-ncrst-grey mb-2">Climate Finance</h4>
+                <p className="text-sm text-ncrst-grey-dark">
+                  Green Climate Fund and international climate finance coordination
+                </p>
+              </div>
             </div>
           </div>
         </div>

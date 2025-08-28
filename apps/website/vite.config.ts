@@ -7,6 +7,11 @@ import path from 'path'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
+// Force base path for Vercel - always use '/' for Vercel deployments
+const base = '/'
+
+console.log('Vite config - using base path:', base)
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
@@ -19,7 +24,7 @@ export default defineConfig({
     port: 3000,
   },
   build: {
-    outDir: '../../',
+    outDir: 'dist',
     sourcemap: true,
     rollupOptions: {
       output: {
@@ -30,5 +35,5 @@ export default defineConfig({
       }
     }
   },
-  base: '/NCRSTWEBSITE-/',
+  base: base,
 }) 

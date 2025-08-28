@@ -27,9 +27,9 @@ const Header: React.FC = () => {
       dropdown: [
         { name: "CEO's Foreword", href: "/about#ceo-forward" },
         { name: "Board of Commissioners", href: "/about#board" },
+        { name: "Organisational Structure", href: "/about#structure" },
         { name: "Councils", href: "/about#councils" },
         { name: "Legislation", href: "/about#legislation" },
-        { name: "Organisational Structure", href: "/about#structure" },
       ],
     },
     {
@@ -37,12 +37,11 @@ const Header: React.FC = () => {
       href: "/research",
       dropdown: [
         { name: "Research Grants", href: "/research#grants" },
-        { name: "Open Calls", href: "/research#calls" },
+        { name: "Natural Sciences Research", href: "/research#natural-sciences" },
+        { name: "Active Research Calls", href: "/research#calls" },
+        { name: "Open Calls", href: "/research#open-calls" },
         { name: "Research Permits", href: "/research#permits" },
-        {
-          name: "Research Institute Registration",
-          href: "/research#registration",
-        },
+        { name: "Research Institute Registration", href: "/research#registration" },
         { name: "Research Symposium", href: "/research#symposium" },
       ],
     },
@@ -51,11 +50,13 @@ const Header: React.FC = () => {
       href: "/science",
       dropdown: [
         { name: "National Science Fair", href: "/science#fair" },
+        { name: "Namibia Mathematics Olympiad", href: "/science#nmo" },
+        { name: "National Science Quiz", href: "/science#quiz" },
         { name: "STEM Gender Programmes", href: "/science#stem" },
         { name: "Science Week", href: "/science#science-week" },
         { name: "Space Week", href: "/science#space" },
-        { name: "National Science Quiz", href: "/science#quiz" },
         { name: "Science Olympiads", href: "/science#olympiads" },
+        { name: "Climate Change & Environmental Reporting", href: "/science#climate" },
       ],
     },
     {
@@ -64,7 +65,6 @@ const Header: React.FC = () => {
       dropdown: [
         { name: "Biosafety", href: "/technology#biosafety" },
         { name: "National AI Working Group", href: "/technology#ai" },
-        { name: "AI Research Projects & Funding", href: "/technology#ai" },
         { name: "Biotechnology Labs", href: "/technology#biotech" },
         { name: "Space Science and Technology (SST)", href: "/technology#sst" },
         { name: "Tech Resources", href: "/technology#resources" },
@@ -75,19 +75,14 @@ const Header: React.FC = () => {
       href: "/innovation",
       dropdown: [
         { name: "BOOSTUP Challenge", href: "/innovation#boostup" },
+        { name: "Innovation Calls", href: "/innovation#innovation-calls" },
         { name: "Scale-Up Namibia", href: "/innovation#scaleup" },
-        {
-          name: "National Innovation Programme",
-          href: "/innovation#national-programme",
-        },
-        {
-          name: "Southern Africa Innovation Collective (SAIC)",
-          href: "/innovation#saic",
-        },
-        {
-          name: "Innovation Agencies in Africa Network (IAA)",
-          href: "/innovation#iaa",
-        },
+        { name: "Global Innovation Programme", href: "/innovation#gip" },
+        { name: "National Innovation Centre", href: "/innovation#nic" },
+        { name: "Local Content Initiative", href: "/innovation#lci" },
+        { name: "Innovation Funding Programme", href: "/innovation#ifp" },
+        { name: "Innovation Networks", href: "/innovation#innovation-networks" },
+        { name: "Innovation Agencies in Africa Network", href: "/innovation#iaa" },
         { name: "Innovators Hub", href: "/innovation/innovators-hub" },
       ],
     },
@@ -96,21 +91,16 @@ const Header: React.FC = () => {
       href: "/councils",
       dropdown: [
         { name: "Biosafety Council", href: "/councils/biosafety" },
-        {
-          name: "National Space Science Council",
-          href: "/councils/space-science",
-        },
-        {
-          name: "National Indigenous Knowledge System (IKS)",
-          href: "/councils/iks",
-        },
+        { name: "National Space Science Council", href: "/councils/space-science" },
+        { name: "National Indigenous Knowledge System (IKS)", href: "/councils/iks" },
       ],
     },
     {
       name: "Resources & Opportunities",
       href: "/resources",
       dropdown: [
-        { name: "Resources", href: "/resources" },
+        { name: "Reports & Publications", href: "/resources#reports" },
+        { name: "Research Infrastructure", href: "/resources#infrastructure" },
         { name: "Procurement", href: "/procurement" },
         { name: "Vacancies", href: "/vacancies" },
       ],
@@ -322,28 +312,12 @@ const Header: React.FC = () => {
               <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                 <nav className="flex flex-col sm:flex-row gap-2 sm:gap-4 items-start sm:items-center">
                   <Link
-                    to="/news#news"
+                    to="/news"
                     className={`transition-colors hover:underline ${
                       !isScrolled ? "text-white" : "text-blue"
                     }`}
                   >
-                    News
-                  </Link>
-                  <Link
-                    to="/news#events"
-                    className={`transition-colors hover:underline ${
-                      !isScrolled ? "text-white" : "text-blue"
-                    }`}
-                  >
-                    Events
-                  </Link>
-                  <Link
-                    to="/news/#media"
-                    className={`transition-colors hover:underline ${
-                      !isScrolled ? "text-white" : "text-blue"
-                    }`}
-                  >
-                    Media
+                    News & Events
                   </Link>
                   <a
                     href="https://njrst.ncrst.na/"
@@ -362,6 +336,14 @@ const Header: React.FC = () => {
                     }`}
                   >
                     Portals
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className={`transition-colors hover:underline ${
+                      !isScrolled ? "text-white" : "text-blue"
+                    }`}
+                  >
+                    Contact Us
                   </Link>
                 </nav>
                 {/* Add left padding on language switch for spacing */}

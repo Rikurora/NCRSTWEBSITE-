@@ -64,7 +64,7 @@ const Home: React.FC = () => {
       description:
         "Strengthening human resources and infrastructure for sustainable R&D capabilities.",
       icon: Award,
-      color: "bg-purple-600",
+      color: "bg-ncrst-yellow",
       link: "/research",
     },
   ];
@@ -107,7 +107,7 @@ const Home: React.FC = () => {
       description:
         "Research addressing social, economic, and cultural challenges for sustainable development.",
       icon: Users,
-      color: "bg-purple-600",
+      color: "bg-ncrst-blue",
       link: "/research#social-sciences",
     },
     {
@@ -115,32 +115,35 @@ const Home: React.FC = () => {
       description:
         "Strategic collaborations with academia, industry, and international organizations.",
       icon: BookOpen,
-      color: "bg-indigo-600",
+      color: "bg-ncrst-green",
       link: "/about#partnerships",
     },
   ];
 
-  const latestNews = [
+  const ncrstInitiatives = [
     {
-      title: "BOOSTUP 2025 Applications Now Open",
-      date: "January 15, 2025",
+      title: "BOOST-UP Programme",
       category: "Innovation",
       summary:
-        "Apply for the largest innovation challenge in Namibia with prizes up to N$500,000",
+        "Supporting innovative startups and entrepreneurs with funding, mentorship, and business development opportunities.",
+      link: "/innovation",
+      icon: "🚀",
     },
     {
-      title: "National Science Fair Registration Extended",
-      date: "January 12, 2025",
-      category: "Science",
+      title: "NICW Programme",
+      category: "Women Empowerment",
       summary:
-        "Extended deadline for schools to register for the annual National Science Fair",
+        "Empowering Namibian women entrepreneurs through capacity building, funding, and market access support.",
+      link: "/innovation",
+      icon: "💪",
     },
     {
-      title: "New AI Research Collaboration with University",
-      date: "January 10, 2025",
-      category: "Technology",
+      title: "National Science Fair",
+      category: "Education",
       summary:
-                 "NCRST partners with local universities to establish AI research centres",
+        "Annual competition promoting scientific curiosity and innovation among Namibian students and schools.",
+      link: "/science",
+      icon: "🔬",
     },
   ];
 
@@ -492,20 +495,20 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* News & Events Section */}
+      {/* NCRST Initiatives Section */}
       <section className="py-16 bg-ncrst-grey-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center mb-12">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-ncrst-grey mb-4 leading-heading">
-                Latest News & Events
+                NCRST Initiatives
               </h2>
               <p className="text-lg text-ncrst-grey-dark leading-body">
-                Stay updated with the latest developments
+                Key programmes driving innovation and development in Namibia
               </p>
             </div>
             <Link
-              to="/news"
+              to="/innovation"
               className="bg-ncrst-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-ncrst-blue/90 transition-colors inline-flex items-center space-x-2"
             >
               <span>View All</span>
@@ -514,29 +517,31 @@ const Home: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {latestNews.map((news, index) => (
-              <article
+            {ncrstInitiatives.map((initiative, index) => (
+              <Link
                 key={index}
-                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                to={initiative.link}
+                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1"
               >
                 <div className="p-6">
-                  <div className="flex items-center space-x-2 mb-3">
-                    <span className="bg-ncrst-blue/10 text-ncrst-blue px-2 py-1 rounded text-xs font-medium">
-                      {news.category}
+                  <div className="flex items-center space-x-3 mb-4">
+                    <span className="text-3xl">{initiative.icon}</span>
+                    <span className="bg-ncrst-green/10 text-ncrst-green px-2 py-1 rounded text-xs font-medium">
+                      {initiative.category}
                     </span>
-                    <div className="flex items-center text-sm text-ncrst-grey-dark">
-                      <Calendar size={14} className="mr-1" />
-                      {news.date}
-                    </div>
                   </div>
                   <h3 className="text-lg font-bold text-ncrst-grey mb-3 leading-heading">
-                    {news.title}
+                    {initiative.title}
                   </h3>
                   <p className="text-ncrst-grey-dark text-sm leading-body">
-                    {news.summary}
+                    {initiative.summary}
                   </p>
+                  <div className="flex items-center text-ncrst-blue font-semibold text-sm mt-4">
+                    <span>Learn More</span>
+                    <ArrowRight size={14} className="ml-2" />
+                  </div>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -545,7 +550,7 @@ const Home: React.FC = () => {
       {/* Statistics Dashboard */}
       <section
         id="impact-statistics"
-        className="py-16 bg-ncrst-blue text-white"
+        className="py-12 bg-ncrst-blue text-white mb-16"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -561,27 +566,27 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="text-4xl md:text-5xl font-bold text-ncrst-gold mb-2">
-                245
+                7
               </div>
               <div className="text-sm opacity-90">Active Research Projects</div>
             </div>
             <div className="text-center">
               <div className="text-4xl md:text-5xl font-bold text-ncrst-gold mb-2">
-                N$12.5M
+                N$7.5M
               </div>
               <div className="text-sm opacity-90">Grants Awarded (2024)</div>
             </div>
             <div className="text-center">
               <div className="text-4xl md:text-5xl font-bold text-ncrst-gold mb-2">
-                89
+                1,342
               </div>
-              <div className="text-sm opacity-90">Innovation Startups</div>
+              <div className="text-sm opacity-90">Registered Researchers</div>
             </div>
             <div className="text-center">
               <div className="text-4xl md:text-5xl font-bold text-ncrst-gold mb-2">
                 156
               </div>
-              <div className="text-sm opacity-90">Registered Institutes</div>
+              <div className="text-sm opacity-90">Research Institutes</div>
             </div>
           </div>
         </div>
